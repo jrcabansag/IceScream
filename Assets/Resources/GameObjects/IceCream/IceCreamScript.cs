@@ -52,11 +52,7 @@ public class IceCreamScript : MonoBehaviour {
 				}
 				skeletonScript.WasHit (intMax, transform.up);
 			}
-			if (col.transform.tag == "Obstacle" || col.transform.tag == "Enemy") {
-				iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.1f, "y", 0.03f, "z", 0.1f, "time", 0.2f));
-			} else {
-				print ("WONT SCALE BECAUSE TAG IS " + col.transform.tag);
-			}
+			iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.1f, "y", 0.03f, "z", 0.1f, "time", 0.2f));
 		}
 		if (col.transform.tag == "Ground") {
 			Destroy (gameObject, 0.3f);

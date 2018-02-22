@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour {
 	public float energyBoost = 30f;
 	public float invincibleTime = 2f;
 	public float showHeartTime = 5f;
+	public float minMovementSwitchTime = 2f;
 	public float shootForce = 1000f;
 	private Transform iceCream;
 	private Transform iceCreamPuddle;
@@ -36,12 +37,14 @@ public class PlayerScript : MonoBehaviour {
 	private float lastSlideTime;
 	private float lastSlidePuddleSpawnTime;
 	private float lastHitTime;
+	private float lastMovementSwitchTime;
 	private float currentEnergy = 100f;
 	private int lives = 3;
 	private bool isSliding = false;
 	private bool isAttacking = false;
 	private bool onRamp = false;
 	private bool isAlive = true;
+	private bool isBackward = false;
 
 	void Start () {
 		animator = transform.GetComponent<Animator> ();
@@ -132,9 +135,17 @@ public class PlayerScript : MonoBehaviour {
 			animator.SetBool ("IsMoving", true);
 			Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
 			if (Vector3.Angle (movement, transform.forward) > 90) {
-				animator.SetBool ("IsBackward", true);
+				if (!isBackward && (lastMovementSwitchTime == 0 || Time.time - lastMovementSwitchTime > minMovementSwitchTime)) {
+					lastMovementSwitchTime = Time.time;
+					isBackward = true;
+					animator.SetBool ("IsBackward", true);
+				}
 			} else {
-				animator.SetBool ("IsBackward", false);
+				if (isBackward && (lastMovementSwitchTime == 0 || Time.time - lastMovementSwitchTime > minMovementSwitchTime)) {
+					lastMovementSwitchTime = Time.time;
+					isBackward = false;
+					animator.SetBool ("IsBackward", false);
+				}
 			}
 		} else {
 			animator.SetBool ("IsMoving", false);
@@ -277,6 +288,7 @@ public class PlayerScript : MonoBehaviour {
 		Destroy (transform.Find ("Bar").gameObject);
 		Destroy (transform.Find ("Hearts").gameObject);
 		transform.Find ("Armature_001/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * 500f);
 		animator.enabled = false;
 		gameObject.layer = 11;
 		isAlive = false;
