@@ -60,6 +60,7 @@
      <Compile Include="Assets\Resources\GameObjects\DamageCanvas\DamagesScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\EnemyEmoteCanvas\EnemyEmoteCanvasScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\Hearts\Heart.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Hearts\HeartBreak.cs" />
      <Compile Include="Assets\Resources\GameObjects\Hearts\Hearts.cs" />
      <Compile Include="Assets\Resources\GameObjects\IceCream\IceCreamScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\IceCreamPuddle\IceCreamPuddle.cs" />

@@ -21,7 +21,8 @@ public class PlayerScript : MonoBehaviour {
 	public float energyBoost = 30f;
 	public float invincibleTime = 2f;
 	public float showHeartTime = 5f;
-	public float minMovementSwitchTime = 2f;
+	public float minMovementSwitchTime = 0.5f;
+	public float switchTimeAdvance = 0.02f;
 	public float shootForce = 1000f;
 	private Transform iceCream;
 	private Transform iceCreamPuddle;
@@ -138,12 +139,24 @@ public class PlayerScript : MonoBehaviour {
 				if (!isBackward && (lastMovementSwitchTime == 0 || Time.time - lastMovementSwitchTime > minMovementSwitchTime)) {
 					lastMovementSwitchTime = Time.time;
 					isBackward = true;
+					float walkTime = animator.GetCurrentAnimatorStateInfo (0).normalizedTime;
+					walkTime += switchTimeAdvance;
+					if (walkTime > 1f) {
+						walkTime -= 1f;
+					}
+					animator.Play ("Backward", 0, 1f - walkTime);
 					animator.SetBool ("IsBackward", true);
 				}
 			} else {
 				if (isBackward && (lastMovementSwitchTime == 0 || Time.time - lastMovementSwitchTime > minMovementSwitchTime)) {
 					lastMovementSwitchTime = Time.time;
 					isBackward = false;
+					float walkTime = animator.GetCurrentAnimatorStateInfo (0).normalizedTime;
+					walkTime += switchTimeAdvance;
+					if (walkTime > 1f) {
+						walkTime -= 1f;
+					}
+					animator.Play ("Forward", 0, 1f - walkTime);
 					animator.SetBool ("IsBackward", false);
 				}
 			}
