@@ -9,15 +9,16 @@ public class IceCreamScript : MonoBehaviour {
 	public float powerDivisor = 10f;
 	public float powerExp = 1f;
 	private bool isActive = true;
+	private UI ui;
 
 	void Start () {
 		createdTime = Time.time;
 		Destroy (gameObject, lifeTime);
 		iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.25f, "y", 0.25f, "z", 0.25f, "time", lifeTime));
+		ui = GameObject.FindGameObjectWithTag ("UI").GetComponent<UI> ();
 	}
 
 	void Update () {
-		
 	}
 
 	void OnCollisionEnter(Collision col){
@@ -36,21 +37,20 @@ public class IceCreamScript : MonoBehaviour {
 				if (intMax > 100) {
 					intMax = 100;
 				}
-
 				if (intMax < 50) {
 					Transform damageCanvas = ((GameObject)Resources.Load ("GameObjects/DamageCanvas/Damage", typeof(GameObject))).transform;
 					Transform damager = Instantiate (damageCanvas);
 					damager.position = damagePosition;
 					Damage damageScript = damager.GetComponent<Damage> ();
-					damageScript.SetDamage (intMax);
+					damageScript.SetDamage ((int)(intMax*ui.GetDamageMultiplier()));
 				} else {
 					Transform damageCanvas = ((GameObject)Resources.Load ("GameObjects/DamageCanvas/DamageCrit", typeof(GameObject))).transform;
 					Transform damager = Instantiate (damageCanvas);
 					damager.position = damagePosition;
 					DamageCrit damageScript = damager.GetComponent<DamageCrit> ();
-					damageScript.SetDamage (intMax);
+					damageScript.SetDamage ((int)(intMax*ui.GetDamageMultiplier()));
 				}
-				skeletonScript.WasHit (intMax, transform.up);
+				skeletonScript.WasHit ((int)(intMax*ui.GetDamageMultiplier()), transform.up);
 			}
 			iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.1f, "y", 0.03f, "z", 0.1f, "time", 0.2f));
 		}

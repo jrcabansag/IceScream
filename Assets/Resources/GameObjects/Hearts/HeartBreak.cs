@@ -17,7 +17,7 @@ public class HeartBreak : MonoBehaviour {
 	void OnCollisionEnter(Collision col){
 		if (col.transform.tag == "Ground") {
 			gameObject.layer = 11;
-			//Destroy (gameObject, 5f);
+			Destroy (gameObject, 5f);
 		}
 	}
 }

@@ -9,7 +9,7 @@ TagManager:
   - Obstacle
   - IceCream
   - Inactive
-  - Ramp
+  - UI
   layers:
   - Default
   - TransparentFX

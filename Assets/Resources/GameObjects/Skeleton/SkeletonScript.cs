@@ -22,8 +22,10 @@ public class SkeletonScript : MonoBehaviour {
 	public int currentHealth = 300;
 	public int totalHealth = 300;
 	private Bar healthBar;
-	private Transform player;
+	private static Transform player;
+	private static UI ui;
 	private Animator animator;
+	private Transform emoteCanvas;
 	private EnemyEmoteCanvasScript enemyEmoteCanvas;
 	private Vector3 playerPosition;
 	private Vector3 playerLocalPosition;
@@ -44,12 +46,18 @@ public class SkeletonScript : MonoBehaviour {
 	}
 
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag ("Player").transform;
+		}
+		if (ui == null) {
+			ui = GameObject.FindGameObjectWithTag ("UI").GetComponent<UI> ();
+		}
 		animator = transform.GetComponent<Animator> ();
 //		Transform emoteCanvas = ((GameObject)Resources.Load("GameObjects/EnemyEmoteCanvas/EnemyEmoteCanvas", typeof(GameObject))).transform;
 //		Transform myEmoteCanvas = Instantiate (emoteCanvas);
 //		myEmoteCanvas.SetParent (transform);
 		//myEmoteCanvas.localPosition = new Vector3 (0f, 7.3f, 0f);
+		emoteCanvas = transform.Find("EnemyEmoteCanvas");
 		enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript> ();
 		enemyEmoteCanvas.HideImmediate ();
 		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
@@ -62,6 +70,7 @@ public class SkeletonScript : MonoBehaviour {
 
 	void Die(Vector3 direction){
 		//direction = Vector3.Normalize (player.forward);
+		Destroy(enemyEmoteCanvas.gameObject);
 		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
@@ -83,7 +92,7 @@ public class SkeletonScript : MonoBehaviour {
 		//transform.Find ("Armature").parent = null;
 		animator.enabled = false;
 		isAlive = false;
-
+		ui.UpdateCombo ();
 		//Destroy(transform.Find ("Armature/LowerBody/UpperBody/Head").gameObject);
 	}
 
@@ -126,27 +135,31 @@ public class SkeletonScript : MonoBehaviour {
 	}
 
 	void CheckPlayerSeen(){
-		float closeDistance = defaultCloseDistance;
-		float seeDistance = defaultSeeDistance;
-		float searchingDistance = defaultSeeDistance;
-		float viewAngle = defaultViewAngle;
-		if (lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration) {
-			viewAngle = 360f;
-			searchingDistance = 1000f;
-		}
-		if (playerDistance < closeDistance) {
-			transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
-			phase = "Aware";
-		} else if (((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance)) {
-			transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
-			phase = "Aware";
-		} else if (((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < searchingDistance)) {
-			transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, 1f * Time.deltaTime);
-			phase = "Searching";
-		} else if (playerDistance < closeDistance + suspiciousDistance || ((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance + suspiciousDistance)) {
-			if (!IsStillAware()) {
-				phase = "Suspicious";
-				MakeSuspicious ();
+		if (player.GetComponent<PlayerScript> ().lives > 0) {
+			float closeDistance = defaultCloseDistance;
+			float seeDistance = defaultSeeDistance;
+			float searchingDistance = defaultSeeDistance;
+			float viewAngle = defaultViewAngle;
+			if (lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration) {
+				viewAngle = 360f;
+				searchingDistance = 1000f;
+			}
+			if (playerDistance < closeDistance) {
+				transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
+				phase = "Aware";
+			} else if (((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance)) {
+				transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
+				phase = "Aware";
+			} else if (((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < searchingDistance)) {
+				transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, 1f * Time.deltaTime);
+				phase = "Searching";
+			} else if (playerDistance < closeDistance + suspiciousDistance || ((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance + suspiciousDistance)) {
+				if (!IsStillAware ()) {
+					phase = "Suspicious";
+					MakeSuspicious ();
+				}
+			} else {
+				phase = "Idle";
 			}
 		} else {
 			phase = "Idle";
@@ -154,19 +167,21 @@ public class SkeletonScript : MonoBehaviour {
 	}
 
 	void MoveTowardsPlayer(){
-		if (phase == "Aware" && (playerViewAngles.y < walkAngleMax || 360f - playerViewAngles.y < walkAngleMax)) {
-			transform.Translate (Vector3.Normalize (playerLocalPosition) * movementSpeed * Time.deltaTime, Space.World);
-			isWalking = true;
-			MakeStillAware ();
-		}
-		else if (phase == "Searching" && (playerViewAngles.y < walkAngleMax || 360f - playerViewAngles.y < walkAngleMax) && CheckIfPlayerInSight()) {
-			if (Time.time - lastJoltedTime > joltedDuration) {
+		if (player.GetComponent<PlayerScript> ().lives > 0) {
+			if (phase == "Aware" && (playerViewAngles.y < walkAngleMax || 360f - playerViewAngles.y < walkAngleMax)) {
 				transform.Translate (Vector3.Normalize (playerLocalPosition) * movementSpeed * Time.deltaTime, Space.World);
 				isWalking = true;
 				MakeStillAware ();
+			} else if (phase == "Searching" && (playerViewAngles.y < walkAngleMax || 360f - playerViewAngles.y < walkAngleMax) && CheckIfPlayerInSight ()) {
+				if (Time.time - lastJoltedTime > joltedDuration) {
+					transform.Translate (Vector3.Normalize (playerLocalPosition) * movementSpeed * Time.deltaTime, Space.World);
+					isWalking = true;
+					MakeStillAware ();
+				}
+			} else {
+				isWalking = false;
 			}
-		}
-		else {
+		} else {
 			isWalking = false;
 		}
 	}
@@ -236,7 +251,7 @@ public class SkeletonScript : MonoBehaviour {
 		if (phase == "Aware") {
 			float angryAdd = 0f;
 			if (lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration) {
-				angryAdd = 20f;
+				angryAdd = 40f;
 			}
 			if (playerDistance < defaultWillShootDistance) {
 				animator.SetTrigger ("IsAttacking");

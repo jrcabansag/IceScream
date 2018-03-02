@@ -40,12 +40,13 @@ public class PlayerScript : MonoBehaviour {
 	private float lastHitTime;
 	private float lastMovementSwitchTime;
 	private float currentEnergy = 100f;
-	private int lives = 3;
+	public int lives = 3;
 	private bool isSliding = false;
 	private bool isAttacking = false;
 	private bool onRamp = false;
 	private bool isAlive = true;
 	private bool isBackward = false;
+	private UI ui;
 
 	void Start () {
 		animator = transform.GetComponent<Animator> ();
@@ -55,6 +56,7 @@ public class PlayerScript : MonoBehaviour {
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
 		energyBar = transform.Find ("Bar").GetComponent<Bar>();
 		hearts = transform.Find ("Hearts").GetComponent<Hearts>();
+		ui = GameObject.FindGameObjectWithTag ("UI").GetComponent<UI> ();
 	}
 
 	void Update () {
@@ -103,11 +105,11 @@ public class PlayerScript : MonoBehaviour {
 		verticalInput = Input.GetAxis ("Vertical");
 		horizontalInput = Input.GetAxis ("Horizontal");
 		//if (Input.GetKey ("space") && (Mathf.Abs(verticalInput) != 0 || Mathf.Abs(horizontalInput) != 0)) {
-		if (Input.GetKey ("space") && !isSliding && currentEnergy >= minimumSlideEnergy) {
+		if (Input.GetKey ("space") && !isSliding && currentEnergy >= minimumSlideEnergy && (Mathf.Abs(verticalInput) != 0 || Mathf.Abs(horizontalInput) != 0)) {
 			isSliding = true;
 			lastSlideTime = Time.time;
 		}
-		else if (Input.GetKey ("space") && isSliding && currentEnergy > 0) {
+		else if (Input.GetKey ("space") && isSliding && currentEnergy > 0 && (Mathf.Abs(verticalInput) != 0 || Mathf.Abs(horizontalInput) != 0)) {
 			isSliding = true;
 			lastSlideTime = Time.time;
 		} else {
@@ -272,7 +274,7 @@ public class PlayerScript : MonoBehaviour {
 			lastHitTime = Time.time;
 			lives -= 1;
 		}
-		print ("Lives is " + lives);
+		ui.UpdateLives (lives);
 		if (lives == 0) {
 			Die (direction);
 		}
@@ -305,5 +307,6 @@ public class PlayerScript : MonoBehaviour {
 		animator.enabled = false;
 		gameObject.layer = 11;
 		isAlive = false;
+		ui.Died ();
 	}
 }

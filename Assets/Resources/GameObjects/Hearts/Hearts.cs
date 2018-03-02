@@ -46,6 +46,7 @@ public class Hearts : MonoBehaviour {
 	void DropHeart(Transform heart){
 		heart.GetComponent<Rigidbody> ().isKinematic = false;
 		heart.GetComponent<Rigidbody> ().AddTorque (100f, 100f, 100f);
+		heart.GetComponent<Heart> ().isDead = true;
 		heart.SetParent (null);
 	}
 
