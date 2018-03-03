@@ -19,7 +19,8 @@ public class CameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player").transform.Find ("Armature_001/LowerBody/UpperBody/Head");
+		player = GameObject.FindGameObjectWithTag ("Player").transform.Find ("Armature_001/LowerBody");
+		//player = GameObject.FindGameObjectWithTag ("Player").transform.Find ("Armature_001/LowerBody/UpperBody/Head");
 		defaultRotation = transform.rotation;
 
 
@@ -41,21 +42,21 @@ public class CameraScript : MonoBehaviour {
 //		} else if (Input.GetKeyUp(KeyCode.Escape)){
 //			SceneManager.LoadScene ("MainMenu");
 //		}
-		if (Input.GetMouseButton(1)) {
-			//transform.LookAt(target);
-			//transform.RotateAround (player.position, Vector3.up, rotateSpeed);
-			float addDegree = Input.GetAxis("Mouse X")*rotateSpeed;
-			if (addDegree > maxDegree) {
-				addDegree = maxDegree;
-			}
-			if (addDegree < -maxDegree) {
-				addDegree = -maxDegree;
-			}
-			currentDegree += addDegree;
-
-
-		}
-
+//		if (Input.GetMouseButton(1)) {
+//			//transform.LookAt(target);
+//			//transform.RotateAround (player.position, Vector3.up, rotateSpeed);
+//			float addDegree = Input.GetAxis("Mouse X")*rotateSpeed;
+//			if (addDegree > maxDegree) {
+//				addDegree = maxDegree;
+//			}
+//			if (addDegree < -maxDegree) {
+//				addDegree = -maxDegree;
+//			}
+//			currentDegree += addDegree;
+//
+//
+//		}
+//
 			float currentRadians = currentDegree/180f*Mathf.PI;
 			//Vector3 currentOffset = new Vector3 (-20f*Mathf.Sin (currentRadians), 10f, -20f*Mathf.Cos (currentRadians));
 			Vector3 finalPosition = player.position + offset;

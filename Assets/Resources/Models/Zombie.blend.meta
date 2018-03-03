@@ -1,0 +1,324 @@
+fileFormatVersion: 2
+guid: 583ad49247491498ea12a33e83483260
+timeCreated: 1520027879
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Apron
+    100002: ApronRibbon
+    100004: ApronRibbonRopeL
+    100006: ApronRibbonRopeR
+    100008: ApronTie
+    100010: Armature_001
+    100012: Body
+    100014: BowtieRibbon
+    100016: BowtieTie
+    100018: CollarBone_L
+    100020: CollarBone_R
+    100022: Fingers_L
+    100024: Fingers_R
+    100026: FingerTips_L
+    100028: FingerTips_R
+    100030: Foot_L
+    100032: Foot_R
+    100034: Hair
+    100036: Hand_L
+    100038: Hand_R
+    100040: Head
+    100042: IceCreamHat
+    100044: LowerArm_L
+    100046: LowerArm_R
+    100048: LowerBody
+    100050: LowerLeg_L
+    100052: LowerLeg_R
+    100054: Pants
+    100056: Shirt
+    100058: Shoes
+    100060: Shoulder_L
+    100062: Shoulder_R
+    100064: Thumb_L
+    100066: Thumb_R
+    100068: ThumbTip_L
+    100070: ThumbTip_R
+    100072: UpperArm_L
+    100074: UpperArm_R
+    100076: UpperBody
+    100078: UpperLeg_L
+    100080: UpperLeg_R
+    100082: //RootNode
+    100084: Eyes
+    100086: Body_001
+    100088: Brain
+    100090: Sphere
+    100092: Head_0
+    400000: Apron
+    400002: ApronRibbon
+    400004: ApronRibbonRopeL
+    400006: ApronRibbonRopeR
+    400008: ApronTie
+    400010: Armature_001
+    400012: Body
+    400014: BowtieRibbon
+    400016: BowtieTie
+    400018: CollarBone_L
+    400020: CollarBone_R
+    400022: Fingers_L
+    400024: Fingers_R
+    400026: FingerTips_L
+    400028: FingerTips_R
+    400030: Foot_L
+    400032: Foot_R
+    400034: Hair
+    400036: Hand_L
+    400038: Hand_R
+    400040: Head
+    400042: IceCreamHat
+    400044: LowerArm_L
+    400046: LowerArm_R
+    400048: LowerBody
+    400050: LowerLeg_L
+    400052: LowerLeg_R
+    400054: Pants
+    400056: Shirt
+    400058: Shoes
+    400060: Shoulder_L
+    400062: Shoulder_R
+    400064: Thumb_L
+    400066: Thumb_R
+    400068: ThumbTip_L
+    400070: ThumbTip_R
+    400072: UpperArm_L
+    400074: UpperArm_R
+    400076: UpperBody
+    400078: UpperLeg_L
+    400080: UpperLeg_R
+    400082: //RootNode
+    400084: Eyes
+    400086: Body_001
+    400088: Brain
+    400090: Sphere
+    400092: Head_0
+    2100000: White
+    2100002: Pink
+    2100004: Hair
+    2100006: Black_001
+    2100008: Skin_001
+    4300000: IceCreamHat
+    4300002: Hair
+    4300004: BowtieRibbon
+    4300006: BowtieTie
+    4300008: ApronRibbonRopeR
+    4300010: ApronRibbon
+    4300012: ApronTie
+    4300014: ApronRibbonRopeL
+    4300016: Shoes
+    4300018: Pants
+    4300020: Apron
+    4300022: Shirt
+    4300024: Body
+    4300026: Eyes
+    4300028: Body_001
+    4300030: Brain
+    4300032: Sphere
+    4300034: Head
+    7400000: Default Take
+    7400002: Attacking
+    7400004: Attacking_001
+    7400006: Attacking_003
+    7400008: Backward
+    7400010: Forward_001
+    7400012: Forward2
+    7400014: Idle_001
+    7400016: Idle
+    7400018: Idle_002
+    7400020: Running
+    7400022: TPose
+    7400024: Walking
+    7400026: Walking_008
+    7400028: Forward
+    7400030: ZombieIdle
+    7400032: ZombieWalking
+    9500000: //RootNode
+    13700000: Apron
+    13700002: ApronRibbon
+    13700004: ApronRibbonRopeL
+    13700006: ApronRibbonRopeR
+    13700008: ApronTie
+    13700010: Body
+    13700012: BowtieRibbon
+    13700014: BowtieTie
+    13700016: Hair
+    13700018: IceCreamHat
+    13700020: Pants
+    13700022: Shirt
+    13700024: Shoes
+    13700026: Eyes
+    13700028: Body_001
+    13700030: Brain
+    13700032: Sphere
+    13700034: Head
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ZombieIdle
+      takeName: ZombieIdle
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ZombieWalking
+      takeName: ZombieWalking
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

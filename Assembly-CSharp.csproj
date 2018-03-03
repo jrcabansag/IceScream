@@ -67,6 +67,7 @@
      <Compile Include="Assets\Resources\GameObjects\Player\PlayerScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\Skeleton\SkeletonScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\UI\UI.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Zombie\Zombie.cs" />
      <Compile Include="Assets\Resources\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Resources\MainMenu\MainMenuIceCreamScript.cs" />
      <Compile Include="Assets\Resources\Plugins\Pixelplacement\iTween\iTween.cs" />
