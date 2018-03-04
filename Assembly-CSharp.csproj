@@ -58,7 +58,9 @@
      <Compile Include="Assets\Resources\GameObjects\DamageCanvas\DamageCrit.cs" />
      <Compile Include="Assets\Resources\GameObjects\DamageCanvas\DamageScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\DamageCanvas\DamagesScript.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Devil\Devil.cs" />
      <Compile Include="Assets\Resources\GameObjects\EnemyEmoteCanvas\EnemyEmoteCanvasScript.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Ghost\Ghost.cs" />
      <Compile Include="Assets\Resources\GameObjects\Hearts\Heart.cs" />
      <Compile Include="Assets\Resources\GameObjects\Hearts\HeartBreak.cs" />
      <Compile Include="Assets\Resources\GameObjects\Hearts\Hearts.cs" />
@@ -67,6 +69,8 @@
      <Compile Include="Assets\Resources\GameObjects\Player\PlayerScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\Skeleton\SkeletonScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\UI\UI.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Vampire\Vampire.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Witch\Witch.cs" />
      <Compile Include="Assets\Resources\GameObjects\Zombie\Zombie.cs" />
      <Compile Include="Assets\Resources\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Resources\MainMenu\MainMenuIceCreamScript.cs" />
