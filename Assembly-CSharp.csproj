@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Resources\GameObjects\Bar\Bar.cs" />
      <Compile Include="Assets\Resources\GameObjects\Bone\Bone.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Brain\Brain.cs" />
      <Compile Include="Assets\Resources\GameObjects\Camera\CameraScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\DamageCanvas\Damage.cs" />
      <Compile Include="Assets\Resources\GameObjects\DamageCanvas\DamageCrit.cs" />

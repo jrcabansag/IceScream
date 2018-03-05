@@ -80,8 +80,9 @@ public class PlayerScript : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit[] hits = Physics.RaycastAll (ray, 100f);
 		foreach (RaycastHit hit in hits) {
-			string hitTag = hit.transform.tag;
-			if (hitTag == "Enemy" && hit.transform.gameObject.layer == 12) {
+			//string hitTag = hit.transform.tag;
+			//if (hitTag == "Enemy" && hit.transform.gameObject.layer == 12) {
+			if (hit.transform.gameObject.layer == 12 || hit.transform.gameObject.layer == 10) {
 				return new Vector3 (hit.transform.position.x, transform.position.y, hit.transform.position.z);
 			}
 		}

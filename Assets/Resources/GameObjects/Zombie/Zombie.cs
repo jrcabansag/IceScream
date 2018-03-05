@@ -16,7 +16,7 @@ public class Zombie : MonoBehaviour {
 	public float suspiciousDistance = 5f;
 	public float suspiciousDuration = 2f;
 	public float suspiciousAfterAwareDuration = 2f;
-	public float shootForce = 1500f;
+	public float shootForce = 500f;
 	public float joltedDuration = 1f;
 	public float dieForce = 2000f;
 	public int currentHealth = 300;
@@ -39,7 +39,7 @@ public class Zombie : MonoBehaviour {
 	private float lastJoltedTime;
 	private float lastAwareTime;
 	private bool isAlive = true;
-	private Transform bone;
+	private Transform brain;
 
 	void onEnable(){
 		//Die ();
@@ -56,8 +56,8 @@ public class Zombie : MonoBehaviour {
 		emoteCanvas = transform.Find("EnemyEmoteCanvas");
 		enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript> ();
 		enemyEmoteCanvas.HideImmediate ();
-		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
-		Randomify ();
+		brain = ((GameObject)Resources.Load("GameObjects/Brain/Brain", typeof(GameObject))).transform;
+//		Randomify ();
 		healthBar = transform.Find ("Bar").GetComponent<Bar>();
 	}
 
@@ -66,21 +66,21 @@ public class Zombie : MonoBehaviour {
 
 	void Die(Vector3 direction){
 		Destroy(enemyEmoteCanvas.gameObject);
-		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.layer = 11;
-		transform.Find ("SkeletonAimHelp").gameObject.layer = 11;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+		transform.Find ("Armature_001/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("ZombieAimHelp").gameObject.layer = 11;
 		animator.enabled = false;
 		isAlive = false;
 		ui.UpdateCombo ();
@@ -255,16 +255,32 @@ public class Zombie : MonoBehaviour {
 		}
 	}
 
-	void FireBone(){
+	void FireBrain(){
+		print ("FIRED BRAIN!");
 		Vector3 fireDirection = player.transform.position-transform.position;
 		fireDirection = (fireDirection.normalized+transform.forward).normalized;
-		Quaternion rot = Quaternion.LookRotation (fireDirection);
-		Transform boneProjectile = Instantiate (bone);
+		ShootBrain (fireDirection);
+		Vector3 fireDirection2 = Quaternion.Euler (0f, 25f, 0) * fireDirection;
+		ShootBrain (fireDirection2);
+		Vector3 fireDirection3 = Quaternion.Euler (0f, -25f, 0) * fireDirection;
+		ShootBrain (fireDirection3);
+//		Transform boneProjectile = Instantiate (brain);
+//		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
+//		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
+//		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
+//		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * shootForce);
+//		boneProjectile.GetComponent<Brain> ().moveDirection = fireDirection;
+	}
+
+	void ShootBrain(Vector3 direction){
+		Quaternion rot = Quaternion.LookRotation (direction);
+		Transform boneProjectile = Instantiate (brain);
 		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
 		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
 		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
-		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * shootForce);
-		boneProjectile.GetComponent<Bone> ().moveDirection = fireDirection;
+		boneProjectile.GetComponent<Rigidbody> ().AddForce (direction * shootForce);
+		boneProjectile.GetComponent<Brain> ().moveDirection = direction;
+		
 	}
 
 	bool CheckIfPlayerInSight(){

@@ -49,20 +49,20 @@ public class UI : MonoBehaviour {
 
 	public void UpdateDamage(){
 		if (comboCount == 3) {
-			damageMultiplier = 1.25f;
-			damageText.SetText ("1.25x DAMAGE");
+			damageMultiplier = 2f;
+			damageText.SetText ("2x DAMAGE");
 		}
 		else if (comboCount == 8) {
-			damageMultiplier = 1.5f;
-			damageText.SetText ("1.50x DAMAGE");
+			damageMultiplier = 3f;
+			damageText.SetText ("3x DAMAGE");
 		}
 		else if (comboCount == 15) {
-			damageMultiplier = 1.75f;
-			damageText.SetText ("1.75x DAMAGE");
+			damageMultiplier = 4f;
+			damageText.SetText ("4x DAMAGE");
 		}
 		else if (comboCount == 25) {
-			damageMultiplier = 2f;
-			damageText.SetText ("2.00x DAMAGE");
+			damageMultiplier = 5f;
+			damageText.SetText ("5x DAMAGE");
 		}
 	}
 

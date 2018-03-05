@@ -10,6 +10,8 @@ TagManager:
   - IceCream
   - Inactive
   - UI
+  - Zombie
+  - Skeleton
   layers:
   - Default
   - TransparentFX

@@ -26,9 +26,8 @@ public class IceCreamScript : MonoBehaviour {
 			//print (col.transform.tag);
 			gameObject.GetComponent<Rigidbody> ().useGravity = true;
 			isActive = false;
-			if (col.transform.tag == "Enemy") {
+			if (col.gameObject.layer == 12) {
 				Transform enemy = col.transform;
-				SkeletonScript skeletonScript = enemy.GetComponent<SkeletonScript> ();
 				Bounds enemyBounds = enemy.GetComponent<Collider> ().bounds;
 				float topY = enemyBounds.center.y + enemyBounds.extents.y+0.2f;
 				Vector3 damagePosition = new Vector3 (enemy.position.x, topY+0.4f, enemy.position.z);
@@ -50,7 +49,13 @@ public class IceCreamScript : MonoBehaviour {
 					DamageCrit damageScript = damager.GetComponent<DamageCrit> ();
 					damageScript.SetDamage ((int)(intMax*ui.GetDamageMultiplier()));
 				}
-				skeletonScript.WasHit ((int)(intMax*ui.GetDamageMultiplier()), transform.up);
+				if (col.transform.tag == "Skeleton") {
+					SkeletonScript skeletonScript = enemy.GetComponent<SkeletonScript> ();
+					skeletonScript.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
+				} else if (col.transform.tag == "Zombie") {
+					Zombie zombie = enemy.GetComponent<Zombie> ();
+					zombie.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
+				}
 			}
 			iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.1f, "y", 0.03f, "z", 0.1f, "time", 0.2f));
 		}
