@@ -40,6 +40,10 @@ public class Ghost : MonoBehaviour {
 	private float lastAwareTime;
 	private bool isAlive = true;
 	private Transform bone;
+	private Transform eyes;
+	private bool ghostForm = false;
+	private Material black;
+	private Material ghostEyes;
 
 	void onEnable(){
 		//Die ();
@@ -57,6 +61,9 @@ public class Ghost : MonoBehaviour {
 		enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript> ();
 		enemyEmoteCanvas.HideImmediate ();
 		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
+		black = ((Material)Resources.Load ("Materials/Black", typeof(Material)));
+		ghostEyes = ((Material)Resources.Load ("Materials/GhostEyes", typeof(Material)));
+		eyes = transform.Find ("Eyes");
 		Randomify ();
 		healthBar = transform.Find ("Bar").GetComponent<Bar>();
 	}
@@ -66,21 +73,22 @@ public class Ghost : MonoBehaviour {
 
 	void Die(Vector3 direction){
 		Destroy(enemyEmoteCanvas.gameObject);
-		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.layer = 11;
-		transform.Find ("SkeletonAimHelp").gameObject.layer = 11;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+		Destroy (gameObject);
+//		transform.Find ("GhostAimHelp").gameObject.layer = 11;
+//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
 		animator.enabled = false;
 		isAlive = false;
 		ui.UpdateCombo ();
@@ -98,6 +106,7 @@ public class Ghost : MonoBehaviour {
 			GetPlayerPosition ();
 			CheckPlayerSeen ();
 			SetAnimations ();
+			SetGhostForm ();
 			if (Input.GetKey ("r")) {
 				animator.SetTrigger ("IsAttacking");
 			}
@@ -175,6 +184,22 @@ public class Ghost : MonoBehaviour {
 
 	void SetAnimations(){
 		animator.SetBool ("IsWalking", isWalking);
+	}
+
+	void SetGhostForm(){
+		if (isWalking && !ghostForm) {
+			print ("GHOST FORM ACTIVATED!");
+			ghostForm = true;
+			gameObject.layer = 18;
+
+			//eyes.position = new Vector3 (0f, 0f, 0f);
+			//eyes.GetComponent<Renderer> ().enabled = false;
+		} else if (!isWalking && ghostForm) {
+			print ("GHOST FORM DEACTIVATED!");
+			ghostForm = false;
+			gameObject.layer = 12;
+			//eyes.GetComponent<Renderer> ().enabled = true;
+		}
 	}
 
 	public void MakeAngry(){

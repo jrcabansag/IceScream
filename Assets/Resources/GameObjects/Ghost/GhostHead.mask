@@ -52,7 +52,7 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R/Thumb_R/ThumbTip_R
     m_Weight: 0
-  - m_Path: Armature_001/LowerBody/UpperBody/Head
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0
     m_Weight: 1
   - m_Path: Armature_001/LowerBody/UpperLeg_L
     m_Weight: 0
@@ -67,8 +67,12 @@ AvatarMask:
   - m_Path: Armature_001/LowerBody/UpperLeg_R/LowerLeg_R/Foot_R
     m_Weight: 0
   - m_Path: Body
-    m_Weight: 0
+    m_Weight: 1
+  - m_Path: Eyes
+    m_Weight: 1
   - m_Path: Hair
-    m_Weight: 0
+    m_Weight: 1
+  - m_Path: Head
+    m_Weight: 1
   - m_Path: Shirt
-    m_Weight: 0
+    m_Weight: 1

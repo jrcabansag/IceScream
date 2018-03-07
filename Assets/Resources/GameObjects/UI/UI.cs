@@ -42,13 +42,17 @@ public class UI : MonoBehaviour {
 	public void UpdateCombo(){
 		comboCount += 1;
 		UpdateDamage ();
-		if (comboCount >= 3) {
+		if (comboCount >= 1) {
 			UpdateComboDisplay ();
 		}
 	}
 
 	public void UpdateDamage(){
-		if (comboCount == 3) {
+		if (comboCount == 1) {
+			damageMultiplier = 1f;
+			damageText.SetText ("1x DAMAGE");
+		}
+		else if (comboCount == 3) {
 			damageMultiplier = 2f;
 			damageText.SetText ("2x DAMAGE");
 		}

@@ -58,7 +58,11 @@ public class IceCreamScript : MonoBehaviour {
 				} else if (col.transform.tag == "Vampire") {
 					Vampire vampire = enemy.GetComponent<Vampire> ();
 					vampire.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
+				} else if (col.transform.tag == "Ghost") {
+					Ghost ghost = enemy.GetComponent<Ghost> ();
+					ghost.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
 				}
+
 			}
 			iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.1f, "y", 0.03f, "z", 0.1f, "time", 0.2f));
 		}

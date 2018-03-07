@@ -41,6 +41,8 @@ ModelImporter:
     100066: UpperBody
     100068: UpperLeg_L
     100070: UpperLeg_R
+    100072: Eyes
+    100074: Head_0
     400000: ApronRibbon
     400002: ApronRibbonRopeL
     400004: ApronRibbonRopeR
@@ -77,6 +79,8 @@ ModelImporter:
     400066: UpperBody
     400068: UpperLeg_L
     400070: UpperLeg_R
+    400072: Eyes
+    400074: Head_0
     2100000: Black_001
     2100002: White
     4300000: Hair
@@ -86,6 +90,8 @@ ModelImporter:
     4300008: ApronRibbonRopeL
     4300010: Shirt
     4300012: Body
+    4300014: Eyes
+    4300016: Head
     7400000: Default Take
     7400002: Attacking
     7400004: Attacking_001
@@ -112,6 +118,8 @@ ModelImporter:
     13700008: Body
     13700010: Hair
     13700012: Shirt
+    13700014: Eyes
+    13700016: Head
   externalObjects: {}
   materials:
     importMaterials: 1
