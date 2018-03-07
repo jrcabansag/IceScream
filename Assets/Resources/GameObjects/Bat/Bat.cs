@@ -25,7 +25,7 @@ public class Bat : MonoBehaviour {
 		Quaternion playerLocalAngles = Quaternion.Euler (0f, Quaternion.LookRotation (playerLocalPosition).eulerAngles.y, 0f);
 		//transform.Translate (Vector3.Normalize (playerLocalPosition) * movementSpeed * Time.deltaTime, Space.World);
 		Vector3 myForward = transform.forward;
-		print (myForward);
+		//print (myForward);
 		myForward.y = 0f;
 		transform.Translate(Vector3.Normalize(myForward)*movementSpeed*Time.deltaTime, Space.World);
 		transform.rotation = Quaternion.Slerp (transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
@@ -38,6 +38,15 @@ public class Bat : MonoBehaviour {
 		if (rotationSpeed <= 0 && positiveRotation == true) {
 			positiveRotation = false;
 			Destroy (gameObject, 5f);
+		}
+	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.transform.tag == "Player") {
+			Vector3 myForward = transform.forward;
+			myForward.y = 0f;
+			col.transform.GetComponent<PlayerScript> ().HitEnemy (Vector3.Normalize(myForward), 1000f);
+			Destroy (gameObject);
 		}
 	}
 }

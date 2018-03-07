@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 54235641606106980}
   - component: {fileID: 135565680139974714}
   m_Layer: 17
-  m_Name: New Prefab
+  m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,8 +271,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019496692359104}
   m_LocalRotation: {x: -0.000000016320225, y: 0.9961947, z: -0.08715578, w: -0.00000018654096}
-  m_LocalPosition: {x: -3.0314662, y: 3, z: -68.653114}
-  m_LocalScale: {x: 0.54461443, y: 0.67585623, z: 0.67585623}
+  m_LocalPosition: {x: -3.59, y: 3.6453, z: -64.262}
+  m_LocalScale: {x: 0.38084307, y: 0.47261906, z: 0.47261906}
   m_Children:
   - {fileID: 4172645581767116}
   - {fileID: 4403149486550878}
@@ -378,10 +378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11910e919f48c46059117e8a5606b4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 4.5
+  rotationSpeed: 4
   movementSpeed: 14
   minRotationSpeed: 1.5
-  rotationDecaySpeed: 0.3
+  rotationDecaySpeed: 0.6
   positiveRotation: 1
 --- !u!135 &135565680139974714
 SphereCollider:

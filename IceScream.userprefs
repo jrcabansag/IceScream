@@ -1,18 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/GameObjects/Zombie/Zombie.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/GameObjects/Skeleton/SkeletonScript.cs">
     <Files>
-      <File FileName="Assets/Resources/GameObjects/Bone/Bone.cs" Line="31" Column="3" />
+      <File FileName="Assets/Resources/GameObjects/Bat/Bat.cs" Line="44" Column="2" />
+      <File FileName="Assets/Resources/GameObjects/Bone/Bone.cs" Line="24" Column="3" />
       <File FileName="Assets/Resources/GameObjects/Devil/Devil.cs" Line="1" Column="1" />
       <File FileName="Assets/Resources/GameObjects/Vampire/Vampire.cs" Line="296" Column="3" />
-      <File FileName="Assets/Resources/GameObjects/Skeleton/SkeletonScript.cs" Line="88" Column="3" />
-      <File FileName="Assets/Resources/GameObjects/Zombie/Zombie.cs" Line="265" Column="53" />
+      <File FileName="Assets/Resources/GameObjects/Skeleton/SkeletonScript.cs" Line="317" Column="89" />
+      <File FileName="Assets/Resources/GameObjects/Zombie/Zombie.cs" Line="318" Column="89" />
       <File FileName="Assets/Resources/GameObjects/Witch/Witch.cs" Line="1" Column="1" />
       <File FileName="Assets/Resources/GameObjects/Ghost/Ghost.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/GameObjects/Brain/Brain.cs" Line="17" Column="47" />
-      <File FileName="Assets/Resources/GameObjects/IceCream/IceCreamScript.cs" Line="35" Column="19" />
-      <File FileName="Assets/Resources/GameObjects/Player/PlayerScript.cs" Line="293" Column="1" />
-      <File FileName="Assets/Resources/GameObjects/UI/UI.cs" Line="65" Column="26" />
+      <File FileName="Assets/Resources/GameObjects/Brain/Brain.cs" Line="1" Column="1" />
+      <File FileName="Assets/Resources/GameObjects/IceCream/IceCreamScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Resources/GameObjects/Player/PlayerScript.cs" Line="286" Column="3" />
+      <File FileName="Assets/Resources/GameObjects/UI/UI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -310,4 +310,12 @@ public class Zombie : MonoBehaviour {
 			healthBar.Hide ();
 		}
 	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.transform.tag == "Player") {
+			Vector3 myForward = transform.forward;
+			myForward.y = 0f;
+			col.transform.GetComponent<PlayerScript> ().HitEnemy (Vector3.Normalize(myForward), 500f);
+		}
+	}
 }

@@ -181,6 +181,7 @@
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
 'Assets/Resources/GameObjects/Bar/Bar.cs'
+'Assets/Resources/GameObjects/Bat/Bat.cs'
 'Assets/Resources/GameObjects/Bone/Bone.cs'
 'Assets/Resources/GameObjects/Brain/Brain.cs'
 'Assets/Resources/GameObjects/Camera/CameraScript.cs'
@@ -200,6 +201,7 @@
 'Assets/Resources/GameObjects/Skeleton/SkeletonScript.cs'
 'Assets/Resources/GameObjects/UI/UI.cs'
 'Assets/Resources/GameObjects/Vampire/Vampire.cs'
+'Assets/Resources/GameObjects/VampireBat/Bat.cs'
 'Assets/Resources/GameObjects/Witch/Witch.cs'
 'Assets/Resources/GameObjects/Zombie/Zombie.cs'
 'Assets/Resources/MainMenu/MainMenu.cs'

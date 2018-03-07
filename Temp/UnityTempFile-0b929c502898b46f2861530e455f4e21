@@ -201,6 +201,7 @@
 'Assets/Resources/GameObjects/Skeleton/SkeletonScript.cs'
 'Assets/Resources/GameObjects/UI/UI.cs'
 'Assets/Resources/GameObjects/Vampire/Vampire.cs'
+'Assets/Resources/GameObjects/VampireBat/VampireBat.cs'
 'Assets/Resources/GameObjects/Witch/Witch.cs'
 'Assets/Resources/GameObjects/Zombie/Zombie.cs'
 'Assets/Resources/MainMenu/MainMenu.cs'

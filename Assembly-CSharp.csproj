@@ -72,6 +72,7 @@
      <Compile Include="Assets\Resources\GameObjects\Skeleton\SkeletonScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\UI\UI.cs" />
      <Compile Include="Assets\Resources\GameObjects\Vampire\Vampire.cs" />
+     <Compile Include="Assets\Resources\GameObjects\VampireBat\VampireBat.cs" />
      <Compile Include="Assets\Resources\GameObjects\Witch\Witch.cs" />
      <Compile Include="Assets\Resources\GameObjects\Zombie\Zombie.cs" />
      <Compile Include="Assets\Resources\MainMenu\MainMenu.cs" />

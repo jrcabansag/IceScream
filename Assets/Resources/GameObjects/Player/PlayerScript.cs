@@ -281,6 +281,13 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
+	public void HitEnemy(Vector3 direction, float force){
+		if (lastHitTime == 0 || Time.time - lastHitTime > invincibleTime) {
+			gameObject.GetComponent<Rigidbody> ().AddForce (direction * force);
+		}
+		WasHit (direction);
+	}
+
 	void UpdateHearts(){
 		if (Time.time - lastHitTime < showHeartTime) {
 			hearts.Show ();
