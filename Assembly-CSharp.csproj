@@ -68,8 +68,10 @@
      <Compile Include="Assets\Resources\GameObjects\Hearts\Hearts.cs" />
      <Compile Include="Assets\Resources\GameObjects\IceCream\IceCreamScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\IceCreamPuddle\IceCreamPuddle.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Orb\Orb.cs" />
      <Compile Include="Assets\Resources\GameObjects\Player\PlayerScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\Skeleton\SkeletonScript.cs" />
+     <Compile Include="Assets\Resources\GameObjects\Soul\Soul.cs" />
      <Compile Include="Assets\Resources\GameObjects\UI\UI.cs" />
      <Compile Include="Assets\Resources\GameObjects\Vampire\Vampire.cs" />
      <Compile Include="Assets\Resources\GameObjects\VampireBat\VampireBat.cs" />

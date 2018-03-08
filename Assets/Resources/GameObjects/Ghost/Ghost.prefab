@@ -871,7 +871,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287359900586166}
-  m_LocalRotation: {x: -0.01590887, y: 0.71277183, z: 0.7010428, w: 0.0155703565}
+  m_LocalRotation: {x: -0.015908869, y: 0.7127718, z: 0.7010427, w: 0.015570355}
   m_LocalPosition: {x: -0.101066045, y: 0.29911485, z: -0.0046887468}
   m_LocalScale: {x: 0.9999995, y: 0.99999976, z: 0.99997956}
   m_Children:
@@ -1484,11 +1484,12 @@ MonoBehaviour:
   suspiciousDistance: 5
   suspiciousDuration: 2
   suspiciousAfterAwareDuration: 2
-  shootForce: 1500
+  shootForce: 1000
   joltedDuration: 1
   dieForce: 2000
   currentHealth: 300
   totalHealth: 300
+  orbCount: 8
 --- !u!114 &114780087474012572
 MonoBehaviour:
   m_ObjectHideFlags: 1

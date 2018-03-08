@@ -21,6 +21,7 @@ public class Ghost : MonoBehaviour {
 	public float dieForce = 2000f;
 	public int currentHealth = 300;
 	public int totalHealth = 300;
+	public int orbCount = 8;
 	private Bar healthBar;
 	private static Transform player;
 	private static UI ui;
@@ -39,7 +40,7 @@ public class Ghost : MonoBehaviour {
 	private float lastJoltedTime;
 	private float lastAwareTime;
 	private bool isAlive = true;
-	private Transform bone;
+	private Transform orb;
 	private Transform eyes;
 	private bool ghostForm = false;
 	private Material black;
@@ -60,7 +61,7 @@ public class Ghost : MonoBehaviour {
 		emoteCanvas = transform.Find("EnemyEmoteCanvas");
 		enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript> ();
 		enemyEmoteCanvas.HideImmediate ();
-		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
+		orb = ((GameObject)Resources.Load("GameObjects/Soul/Soul", typeof(GameObject))).transform;
 		black = ((Material)Resources.Load ("Materials/Black", typeof(Material)));
 		ghostEyes = ((Material)Resources.Load ("Materials/GhostEyes", typeof(Material)));
 		eyes = transform.Find ("Eyes");
@@ -280,16 +281,29 @@ public class Ghost : MonoBehaviour {
 		}
 	}
 
-	void FireBone(){
-		Vector3 fireDirection = player.transform.position-transform.position;
-		fireDirection = (fireDirection.normalized+transform.forward).normalized;
-		Quaternion rot = Quaternion.LookRotation (fireDirection);
-		Transform boneProjectile = Instantiate (bone);
-		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
-		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
-		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
-		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * shootForce);
-		boneProjectile.GetComponent<Bone> ().moveDirection = fireDirection;
+	void FireOrbs(){
+//		if (isWalking) {
+//			ShootOrb (Vector3.Normalize (transform.forward), 1500f);
+//		} else {
+		for (int x = 0; x < orbCount; x++) {
+				Vector3 fireDirection = Quaternion.Euler (0f, ((float)360 / orbCount * x), 0) * transform.forward;
+				ShootOrb (Vector3.Normalize (fireDirection), 800f);
+			}
+//		}
+	}
+
+	void ShootOrb(Vector3 direction, float shootForce){
+		Quaternion rot = Quaternion.LookRotation (direction);
+		Transform orbProjectile = Instantiate (orb);
+		orbProjectile.GetComponent<Soul> ().ghostAnchor = transform;
+		orbProjectile.rotation = rot;
+		//Vector3 orbPosition = new Vector3 (transform.position.x, 3f, transform.position.z);
+		//if (isWalking) {
+		//	orbPosition = orbPosition + 3f * Vector3.Normalize (transform.forward);
+		//}
+		//orbProjectile.transform.position = orbPosition;
+		//orbProjectile.GetComponent<Rigidbody> ().AddForce (direction * shootForce);
+		orbProjectile.GetComponent<Soul> ().moveDirection = direction;
 	}
 
 	bool CheckIfPlayerInSight(){
