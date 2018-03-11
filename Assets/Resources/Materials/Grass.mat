@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Grass
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
   m_ShaderKeywords: _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -78,7 +78,7 @@ Material:
     - _Metallic: 0.366
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.005
+    - _Outline: 0.0025
     - _OutlineThickness: 0
     - _Parallax: 0.02
     - _Shininess: 0.971
@@ -88,8 +88,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.4044118, g: 1, b: 0.92606497, a: 1}
+    - _Color: {r: 0.4044118, g: 0.80283993, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 0.21323532, b: 0.21323532, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.25882354, g: 0.25882354, b: 0.25882354, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnlitColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

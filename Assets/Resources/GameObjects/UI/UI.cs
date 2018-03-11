@@ -6,6 +6,7 @@ using TMPro;
 
 public class UI : MonoBehaviour {
 
+	public int monsterCount = 5;
 	private RawImage lives;
 	private TextMeshProUGUI livesText;
 	private RawImage death;
@@ -15,6 +16,7 @@ public class UI : MonoBehaviour {
 	private TextMeshProUGUI damageText;
 	private int comboCount = 0;
 	private float damageMultiplier = 1;
+	private float myLives = 3;
 
 	// Use this for initialization
 	void Start () {
@@ -40,10 +42,14 @@ public class UI : MonoBehaviour {
 	}
 
 	public void UpdateCombo(){
+		monsterCount -= 1;
 		comboCount += 1;
-		UpdateDamage ();
-		if (comboCount >= 1) {
+		if (monsterCount <= 0) {
+			ClearedStage ();
+		}
+		else if (comboCount >= 1) {
 			UpdateComboDisplay ();
+			UpdateDamage ();
 		}
 	}
 
@@ -90,6 +96,23 @@ public class UI : MonoBehaviour {
 		iTween.ScaleTo(combo.gameObject, iTween.Hash("x", 0.7f, "y", 0.7f, "time", 9f, "delay", 1f, "easeType", iTween.EaseType.easeInOutSine));
 	}
 
+	void ClearedStage(){
+		comboText.SetText ("STAGE CLEARED!");
+		string ratingString = "RATING: ";
+		for(int a = 0; a < myLives; a++){
+			ratingString += "X";
+		}
+		damageText.SetText (ratingString);
+		combo.CrossFadeAlpha (1f, 0f, true);
+		comboText.CrossFadeAlpha (1f, 0f, true);
+		damageText.CrossFadeAlpha (1f, 0f, true);
+		CancelInvoke ("ComboFade");
+		CancelInvoke ("KillCombo");
+		iTween.ScaleTo(combo.gameObject, iTween.Hash("x", 1f, "y", 1f, "time", 0.5f));
+		iTween.PunchScale(comboText.gameObject, iTween.Hash("amount", new Vector3(0.15f, 0.15f, 1f), "time", 1f));
+		iTween.PunchScale(damageText.gameObject, iTween.Hash("amount", new Vector3(0.1f, 0.1f, 1f), "time", 1f));
+	}
+
 	void KillCombo(){
 		comboCount = 0;
 		damageMultiplier = 1f;
@@ -97,6 +120,7 @@ public class UI : MonoBehaviour {
 	}
 
 	public void UpdateLives(int livesCount){
+		myLives = livesCount;
 		livesText.SetText ("LIVES: " + livesCount);
 	}
 
