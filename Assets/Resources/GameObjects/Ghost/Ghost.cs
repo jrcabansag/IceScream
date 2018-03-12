@@ -189,16 +189,16 @@ public class Ghost : MonoBehaviour {
 
 	void SetGhostForm(){
 		if (isWalking && !ghostForm) {
-			print ("GHOST FORM ACTIVATED!");
+			//print ("GHOST FORM ACTIVATED!");
 			ghostForm = true;
-			gameObject.layer = 18;
+			//gameObject.layer = 18;
 
 			//eyes.position = new Vector3 (0f, 0f, 0f);
 			//eyes.GetComponent<Renderer> ().enabled = false;
 		} else if (!isWalking && ghostForm) {
-			print ("GHOST FORM DEACTIVATED!");
+			//print ("GHOST FORM DEACTIVATED!");
 			ghostForm = false;
-			gameObject.layer = 12;
+			//gameObject.layer = 12;
 			//eyes.GetComponent<Renderer> ().enabled = true;
 		}
 	}
@@ -304,6 +304,7 @@ public class Ghost : MonoBehaviour {
 		//orbProjectile.transform.position = orbPosition;
 		//orbProjectile.GetComponent<Rigidbody> ().AddForce (direction * shootForce);
 		orbProjectile.GetComponent<Soul> ().moveDirection = direction;
+		orbProjectile.GetComponent<Soul> ().activated = true;
 	}
 
 	bool CheckIfPlayerInSight(){

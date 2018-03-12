@@ -14,6 +14,8 @@ TagManager:
   - Bat
   - Vampire
   - Ghost
+  - Enemy
+  - Witch
   layers:
   - Default
   - TransparentFX
@@ -34,10 +36,10 @@ TagManager:
   - PlayerRagdoll
   - BatProjectile
   - EnemyInvincible
-  - 
-  - 
-  - 
-  - 
+  - GhostEnemy
+  - GhostEnemyProjectile
+  - Obstacle
+  - Heartbreak
   - 
   - 
   - 

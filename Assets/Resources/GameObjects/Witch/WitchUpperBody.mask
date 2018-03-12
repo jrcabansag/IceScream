@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: WitchUpperBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature_001
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Fingers_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L/Hand_L/Fingers_L/FingerTips_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L/Thumb_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L/Thumb_L/ThumbTip_L
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Fingers_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R/Hand_R/Fingers_R/FingerTips_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R/Thumb_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R/Thumb_R/ThumbTip_R
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0
+    m_Weight: 1
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7/Snake8
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7/Snake8/Snake9
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7/Snake8/Snake9/Snake10
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7/Snake8/Snake9/Snake10/SnakeHead
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7/Snake8/Snake9/Snake10/SnakeHead/SnakeUpperTongue
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperBody/Head_0/Snake1/Snake2/Snake3/Snake4/Snake5/Snake6/Snake7/Snake8/Snake9/Snake10/SnakeHead/SnakeUpperTongue/SnakeLowerTongue
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperLeg_L
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperLeg_L/LowerLeg_L
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperLeg_L/LowerLeg_L/Foot_L
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperLeg_R
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperLeg_R/LowerLeg_R
+    m_Weight: 0
+  - m_Path: Armature_001/LowerBody/UpperLeg_R/LowerLeg_R/Foot_R
+    m_Weight: 0
+  - m_Path: Body
+    m_Weight: 1
+  - m_Path: Eyes
+    m_Weight: 1
+  - m_Path: Hair
+    m_Weight: 1
+  - m_Path: Hat
+    m_Weight: 1
+  - m_Path: Head
+    m_Weight: 1
+  - m_Path: Shirt
+    m_Weight: 1
+  - m_Path: Shoes
+    m_Weight: 1
+  - m_Path: Snake
+    m_Weight: 1
+  - m_Path: SnakeEyes
+    m_Weight: 1
+  - m_Path: SnakeTongue
+    m_Weight: 1

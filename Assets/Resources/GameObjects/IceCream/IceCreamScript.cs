@@ -26,7 +26,7 @@ public class IceCreamScript : MonoBehaviour {
 			//print (col.transform.tag);
 			gameObject.GetComponent<Rigidbody> ().useGravity = true;
 			isActive = false;
-			if (col.gameObject.layer == 12) {
+			if (col.gameObject.layer == 12 || col.gameObject.layer == 19) {
 				Transform enemy = col.transform;
 				Bounds enemyBounds = enemy.GetComponent<Collider> ().bounds;
 				float topY = enemyBounds.center.y + enemyBounds.extents.y+0.2f;
@@ -61,6 +61,9 @@ public class IceCreamScript : MonoBehaviour {
 				} else if (col.transform.tag == "Ghost") {
 					Ghost ghost = enemy.GetComponent<Ghost> ();
 					ghost.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
+				} else if (col.transform.tag == "Witch") {
+					Witch witch = enemy.GetComponent<Witch> ();
+					witch.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
 				}
 
 			}

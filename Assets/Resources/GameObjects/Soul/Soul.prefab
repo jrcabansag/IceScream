@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 114354482639330390}
   - component: {fileID: 135994192870812108}
   - component: {fileID: 54246702724362384}
-  m_Layer: 13
+  m_Layer: 20
   m_Name: Soul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922901857469286}
-  m_LocalRotation: {x: 0.6791496, y: 0.081632145, z: 0.7290178, w: 0.025004411}
+  m_LocalRotation: {x: 0.67914957, y: 0.08163214, z: 0.72901773, w: 0.025004407}
   m_LocalPosition: {x: -0.8095022, y: 0.00000000372529, z: 0.000000007450581}
   m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000001}
   m_Children: []

@@ -8,6 +8,7 @@ public class Soul : MonoBehaviour {
 	private Vector3 localPosition;
 	public Transform ghostAnchor;
 	private bool isActive = true;
+	public bool activated = false;
 	// Use this for initialization
 	void Start () {
 		//Destroy (gameObject, 6f);
@@ -27,10 +28,20 @@ public class Soul : MonoBehaviour {
 	void DestroyOrb(){
 		Destroy (gameObject);
 	}
+
+	void DestroySelf(){
+		iTween.ScaleTo (gameObject, iTween.Hash ("x", 0f, "y", 0f, "z", 0f, "time", 1f, "easeType", iTween.EaseType.easeInOutSine, "oncomplete", "DestroyOrb", "oncompleteTarget", this.gameObject));
+	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		localPosition += moveDirection * movementSpeed * Time.fixedDeltaTime;
-		transform.position = ghostAnchor.position + localPosition;
+		if (activated == true) {
+			if (ghostAnchor != null) {
+				localPosition += moveDirection * movementSpeed * Time.fixedDeltaTime;
+				transform.position = ghostAnchor.position + localPosition;
+			} else {
+				DestroySelf ();
+			}
+		}
 	}
 
 	void OnCollisionEnter(Collision col){
@@ -38,7 +49,7 @@ public class Soul : MonoBehaviour {
 		if (col.transform.tag == "Player") {
 			//gameObject.layer = 11;
 			col.transform.GetComponent<PlayerScript> ().WasHit (moveDirection);
-			iTween.ScaleTo (gameObject, iTween.Hash ("x", 0f, "y", 0f, "z", 0f, "time", 1f, "easeType", iTween.EaseType.easeInOutSine, "oncomplete", "DestroyOrb", "oncompleteTarget", this.gameObject));
+			DestroySelf ();
 		}
 	}
 }

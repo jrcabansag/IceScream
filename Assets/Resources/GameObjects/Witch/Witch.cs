@@ -40,6 +40,7 @@ public class Witch : MonoBehaviour {
 	private float lastAwareTime;
 	private bool isAlive = true;
 	private Transform bone;
+	private Transform bat;
 
 	void onEnable(){
 		//Die ();
@@ -59,30 +60,32 @@ public class Witch : MonoBehaviour {
 		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
 		Randomify ();
 		healthBar = transform.Find ("Bar").GetComponent<Bar>();
+		bat = ((GameObject)Resources.Load("GameObjects/WitchBat/WitchBat", typeof(GameObject))).transform;
 	}
 
 	void GetRagdolls(){
 	}
 
 	void Die(Vector3 direction){
-		Destroy(enemyEmoteCanvas.gameObject);
-		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		gameObject.layer = 11;
-		transform.Find ("SkeletonAimHelp").gameObject.layer = 11;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-		animator.enabled = false;
-		isAlive = false;
+//		Destroy(enemyEmoteCanvas.gameObject);
+//		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		gameObject.layer = 11;
+//		transform.Find ("SkeletonAimHelp").gameObject.layer = 11;
+//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+//		animator.enabled = false;
+//		isAlive = false;
+		Destroy(gameObject);
 		ui.UpdateCombo ();
 	}
 
@@ -253,6 +256,14 @@ public class Witch : MonoBehaviour {
 				animator.SetTrigger ("IsAttacking");
 			}
 		}
+	}
+
+	void FireBat(){
+		Transform batProjectile = Instantiate (bat);
+		Vector3 batPosition = new Vector3 (transform.position.x, 3f, transform.position.z)+Vector3.Normalize (transform.forward);
+		batProjectile.position = batPosition;
+		batProjectile.rotation = Quaternion.Euler (10f, transform.rotation.eulerAngles.y, 0f);
+
 	}
 
 	void FireBone(){

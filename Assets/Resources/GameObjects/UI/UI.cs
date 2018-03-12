@@ -108,7 +108,8 @@ public class UI : MonoBehaviour {
 		damageText.CrossFadeAlpha (1f, 0f, true);
 		CancelInvoke ("ComboFade");
 		CancelInvoke ("KillCombo");
-		iTween.ScaleTo(combo.gameObject, iTween.Hash("x", 1f, "y", 1f, "time", 0.5f));
+		iTween.ScaleTo(combo.gameObject, iTween.Hash("x", 1.3f, "y", 1.3f, "time", 0.5f));
+		//iTween.PunchScale(combo.gameObject, iTween.Hash("amount", new Vector3(0.15f, 0.15f, 1f), "time", 1f));
 		iTween.PunchScale(comboText.gameObject, iTween.Hash("amount", new Vector3(0.15f, 0.15f, 1f), "time", 1f));
 		iTween.PunchScale(damageText.gameObject, iTween.Hash("amount", new Vector3(0.1f, 0.1f, 1f), "time", 1f));
 	}

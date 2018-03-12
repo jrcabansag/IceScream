@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Movement.unity
+- path: Assets/Graveyard.unity
   isLoaded: 1
   isActive: 1

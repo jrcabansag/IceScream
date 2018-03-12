@@ -82,7 +82,7 @@ public class PlayerScript : MonoBehaviour {
 		foreach (RaycastHit hit in hits) {
 			//string hitTag = hit.transform.tag;
 			//if (hitTag == "Enemy" && hit.transform.gameObject.layer == 12) {
-			if (hit.transform.gameObject.layer == 12 || hit.transform.gameObject.layer == 10) {
+			if (hit.transform.gameObject.layer == 12 || hit.transform.gameObject.layer == 10 || hit.transform.gameObject.layer == 19) {
 				return new Vector3 (hit.transform.position.x, transform.position.y, hit.transform.position.z);
 			}
 		}
