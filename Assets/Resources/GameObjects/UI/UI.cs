@@ -55,16 +55,20 @@ public class UI : MonoBehaviour {
 
 	public void UpdateDamage(){
 		if (comboCount == 1) {
-			damageMultiplier = 1f;
-			damageText.SetText ("1x DAMAGE");
-		}
-		else if (comboCount == 3) {
+			damageMultiplier = 1.25f;
+			damageText.SetText ("1.25x DAMAGE");
+		} else if (comboCount == 2) {
+			damageMultiplier = 1.5f;
+			damageText.SetText ("1.50x DAMAGE");
+		} else if (comboCount == 3) {
 			damageMultiplier = 2f;
-			damageText.SetText ("2x DAMAGE");
-		}
-		else if (comboCount == 8) {
+			damageText.SetText ("2.00x DAMAGE");
+		} else if (comboCount == 5) {
+			damageMultiplier = 2.5f;
+			damageText.SetText ("2.50x DAMAGE");
+		} else if (comboCount == 8) {
 			damageMultiplier = 3f;
-			damageText.SetText ("3x DAMAGE");
+			damageText.SetText ("3.00x DAMAGE");
 		}
 		else if (comboCount == 15) {
 			damageMultiplier = 4f;
@@ -93,7 +97,7 @@ public class UI : MonoBehaviour {
 		//iTween.PunchScale(combo.gameObject, iTween.Hash("amount", new Vector3(0.3f, 0.3f, 1f), "time", 1f, "delay"));
 		iTween.PunchScale(comboText.gameObject, iTween.Hash("amount", new Vector3(0.15f, 0.15f, 1f), "time", 1f));
 		iTween.PunchScale(damageText.gameObject, iTween.Hash("amount", new Vector3(0.1f, 0.1f, 1f), "time", 1f));
-		iTween.ScaleTo(combo.gameObject, iTween.Hash("x", 0.7f, "y", 0.7f, "time", 9f, "delay", 1f, "easeType", iTween.EaseType.easeInOutSine));
+		iTween.ScaleTo(combo.gameObject, iTween.Hash("x", 0.7f, "y", 0.7f, "time", 15f, "delay", 1f, "easeType", iTween.EaseType.easeInOutSine));
 	}
 
 	void ClearedStage(){
