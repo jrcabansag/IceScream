@@ -378,10 +378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11910e919f48c46059117e8a5606b4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
+  rotationSpeed: 4.5
   movementSpeed: 14
   minRotationSpeed: 1.5
-  rotationDecaySpeed: 0.5
+  rotationDecaySpeed: 0.3
   positiveRotation: 1
 --- !u!135 &135565680139974714
 SphereCollider:
