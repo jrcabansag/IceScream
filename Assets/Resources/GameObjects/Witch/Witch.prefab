@@ -1481,7 +1481,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1406710473115322}
-  m_LocalRotation: {x: -0.01590887, y: 0.71277183, z: 0.7010428, w: 0.0155703975}
+  m_LocalRotation: {x: -0.015908869, y: 0.7127718, z: 0.7010427, w: 0.015570396}
   m_LocalPosition: {x: -0.101066045, y: 0.29911485, z: -0.0046887468}
   m_LocalScale: {x: 0.9999995, y: 0.99999976, z: 0.99997956}
   m_Children:
@@ -1912,8 +1912,8 @@ MonoBehaviour:
   shootForce: 1500
   joltedDuration: 1
   dieForce: 2000
-  currentHealth: 300
-  totalHealth: 300
+  currentHealth: 3500
+  totalHealth: 3500
 --- !u!114 &114142434682437458
 MonoBehaviour:
   m_ObjectHideFlags: 1

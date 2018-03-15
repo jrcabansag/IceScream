@@ -70,19 +70,19 @@ public class Witch : MonoBehaviour {
 //		Destroy(enemyEmoteCanvas.gameObject);
 //		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
 //		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
 //		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
 //		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
 //		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 //		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 //		gameObject.layer = 11;
-//		transform.Find ("SkeletonAimHelp").gameObject.layer = 11;
+//		transform.Find ("GhostAimHelp").gameObject.layer = 11;
 //		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+//		transform.Find ("Armature/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
 //		animator.enabled = false;
 //		isAlive = false;
 		Destroy(gameObject);
@@ -101,8 +101,11 @@ public class Witch : MonoBehaviour {
 			GetPlayerPosition ();
 			CheckPlayerSeen ();
 			SetAnimations ();
-			if (Input.GetKey ("r")) {
+			if (Input.GetKey ("r") && phase == "Aware") {
 				animator.SetTrigger ("IsAttacking");
+			}
+			if (Input.GetKey ("t") && phase == "Aware") {
+				animator.SetTrigger ("IsAttacking2");
 			}
 			SetEmote ();
 			ShouldFire ();

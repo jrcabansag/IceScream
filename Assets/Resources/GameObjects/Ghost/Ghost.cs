@@ -74,25 +74,51 @@ public class Ghost : MonoBehaviour {
 
 	void Die(Vector3 direction){
 		Destroy(enemyEmoteCanvas.gameObject);
-//		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.layer = 11;
-		Destroy (gameObject);
-//		transform.Find ("GhostAimHelp").gameObject.layer = 11;
-//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-//		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
 		animator.enabled = false;
+		transform.Find ("Armature_001/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * 500f);
 		isAlive = false;
+		//Destroy(gameObject);
 		ui.UpdateCombo ();
+		Invoke ("Gravityfy", 2.5f);
+		//Gravityfy ();
+	}
+
+	void Gravityfy(){
+		transform.Find ("Armature_001/LowerBody").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().drag = 15;
 	}
 
 	void Randomify(){
@@ -108,7 +134,7 @@ public class Ghost : MonoBehaviour {
 			CheckPlayerSeen ();
 			SetAnimations ();
 			SetGhostForm ();
-			if (Input.GetKey ("r")) {
+			if (Input.GetKey ("r") && phase == "Aware") {
 				animator.SetTrigger ("IsAttacking");
 			}
 			SetEmote ();
@@ -246,7 +272,7 @@ public class Ghost : MonoBehaviour {
 			if (currentHealth <= 0) {
 				Die (direction);
 				player.GetComponent<PlayerScript> ().BoostEnergy ();
-				Destroy (gameObject, 5f);
+				Destroy (gameObject, 9f);
 			} else if (phase != "Aware" && phase != "Searching") {
 				animator.SetTrigger ("IsHit");
 				MakeJolted ();

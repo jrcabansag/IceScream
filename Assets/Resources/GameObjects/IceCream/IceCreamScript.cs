@@ -25,6 +25,7 @@ public class IceCreamScript : MonoBehaviour {
 		if (isActive) {
 			//print (col.transform.tag);
 			gameObject.GetComponent<Rigidbody> ().useGravity = true;
+			gameObject.layer = 11;
 			isActive = false;
 			if (col.gameObject.layer == 12 || col.gameObject.layer == 19) {
 				Transform enemy = col.transform;

@@ -87,8 +87,8 @@ public class UI : MonoBehaviour {
 		damageText.CrossFadeAlpha (1f, 0f, true);
 		CancelInvoke ("ComboFade");
 		CancelInvoke ("KillCombo");
-		Invoke ("ComboFade", 7f);
-		Invoke ("KillCombo", 10f);
+		Invoke ("ComboFade", 12f);
+		Invoke ("KillCombo", 15f);
 //		combo.CrossFadeAlpha (0f, 10f, true);
 //		comboText.CrossFadeAlpha (0f, 10f, true);
 //		damageText.CrossFadeAlpha (0f, 10f, true);

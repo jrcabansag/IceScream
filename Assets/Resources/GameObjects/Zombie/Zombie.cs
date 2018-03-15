@@ -98,7 +98,7 @@ public class Zombie : MonoBehaviour {
 			GetPlayerPosition ();
 			CheckPlayerSeen ();
 			SetAnimations ();
-			if (Input.GetKey ("r")) {
+			if (Input.GetKey ("r") && phase == "Aware") {
 				animator.SetTrigger ("IsAttacking");
 			}
 			SetEmote ();
