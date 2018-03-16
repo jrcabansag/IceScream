@@ -89,6 +89,7 @@ public class Ghost : MonoBehaviour {
 		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().AddForce (direction * 500f);
 		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("GhostAimHelp").gameObject.layer = 11;
 		isAlive = false;
 		//Destroy(gameObject);
 		ui.UpdateCombo ();

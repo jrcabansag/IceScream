@@ -16,7 +16,7 @@ public class Witch : MonoBehaviour {
 	public float suspiciousDistance = 5f;
 	public float suspiciousDuration = 2f;
 	public float suspiciousAfterAwareDuration = 2f;
-	public float shootForce = 1500f;
+	public float shootForce = 500f;
 	public float joltedDuration = 1f;
 	public float dieForce = 2000f;
 	public int currentHealth = 300;
@@ -41,6 +41,7 @@ public class Witch : MonoBehaviour {
 	private bool isAlive = true;
 	private Transform bone;
 	private Transform bat;
+	private Transform brain;
 
 	void onEnable(){
 		//Die ();
@@ -58,6 +59,7 @@ public class Witch : MonoBehaviour {
 		enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript> ();
 		enemyEmoteCanvas.HideImmediate ();
 		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
+		brain = ((GameObject)Resources.Load("GameObjects/Brain/WitchBrain", typeof(GameObject))).transform;
 		Randomify ();
 		healthBar = transform.Find ("Bar").GetComponent<Bar>();
 		bat = ((GameObject)Resources.Load("GameObjects/WitchBat/WitchBat", typeof(GameObject))).transform;
@@ -67,26 +69,53 @@ public class Witch : MonoBehaviour {
 	}
 
 	void Die(Vector3 direction){
-//		Destroy(enemyEmoteCanvas.gameObject);
-//		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-//		gameObject.layer = 11;
-//		transform.Find ("GhostAimHelp").gameObject.layer = 11;
-//		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-//		transform.Find ("Armature/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-//		animator.enabled = false;
-//		isAlive = false;
-		Destroy(gameObject);
+		Destroy(enemyEmoteCanvas.gameObject);
+		gameObject.layer = 11;
+		animator.enabled = false;
+		transform.Find ("Armature_001/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * 500f);
+		transform.Find ("WitchAimHelp").gameObject.layer = 11;
+		isAlive = false;
+		//Destroy(gameObject);
 		ui.UpdateCombo ();
+		Invoke ("Gravityfy", 2.5f);
+		//Gravityfy ();
+	}
+
+	void Gravityfy(){
+		transform.Find ("Armature_001/LowerBody").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").gameObject.layer = 23;
+		transform.Find ("Armature_001/LowerBody").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/Head_0").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().drag = 15;
+		transform.Find ("Armature_001/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().drag = 15;
 	}
 
 	void Randomify(){
@@ -245,19 +274,33 @@ public class Witch : MonoBehaviour {
 				angryAdd = 40f;
 			}
 			if (playerDistance < defaultWillShootDistance) {
-				animator.SetTrigger ("IsAttacking");
+				Attack ();
+				//animator.SetTrigger ("IsAttacking");
 			}
 			if (playerDistance < defaultCloseDistance/2) {
 				if (Random.Range (0f, 100f) < (55f + angryAdd) * Time.deltaTime) {
-					animator.SetTrigger ("IsAttacking");
+					Attack ();
+					//animator.SetTrigger ("IsAttacking");
 				}
 			} else if (playerDistance < defaultSeeDistance) {
 				if (Random.Range (0f, 100f) < (30f + angryAdd) * Time.deltaTime) {
-					animator.SetTrigger ("IsAttacking");
+					Attack ();
+					//animator.SetTrigger ("IsAttacking");
 				}
 			} else if (Random.Range (0f, 100f) < (15f + angryAdd) * Time.deltaTime) {
-				animator.SetTrigger ("IsAttacking");
+				Attack ();
+				//animator.SetTrigger ("IsAttacking");
 			}
+		}
+	}
+
+	void Attack(){
+		if (Random.Range (0, 3) <= 1) {
+			print ("BAT ATTACK!");
+			animator.SetTrigger ("IsAttacking");
+		} else {
+			print ("BRAIN ATTACK!");
+			animator.SetTrigger ("IsAttacking2");
 		}
 	}
 
@@ -266,6 +309,38 @@ public class Witch : MonoBehaviour {
 		Vector3 batPosition = new Vector3 (transform.position.x, 3f, transform.position.z)+Vector3.Normalize (transform.forward);
 		batProjectile.position = batPosition;
 		batProjectile.rotation = Quaternion.Euler (10f, transform.rotation.eulerAngles.y, 0f);
+
+	}
+
+	void FireBrain(){
+		print ("FIRED BRAIN!");
+		Vector3 fireDirection = player.transform.position-transform.position;
+		fireDirection = (fireDirection.normalized+transform.forward).normalized;
+		ShootBrain (fireDirection);
+		Vector3 fireDirection2 = Quaternion.Euler (0f, 25f, 0) * fireDirection;
+		ShootBrain (fireDirection2);
+		Vector3 fireDirection3 = Quaternion.Euler (0f, -25f, 0) * fireDirection;
+		ShootBrain (fireDirection3);
+		Vector3 fireDirection4 = Quaternion.Euler (0f, 12.5f, 0) * fireDirection;
+		ShootBrain (fireDirection4);
+		Vector3 fireDirection5 = Quaternion.Euler (0f, -12.5f, 0) * fireDirection;
+		ShootBrain (fireDirection5);
+		//		Transform boneProjectile = Instantiate (brain);
+		//		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
+		//		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
+		//		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
+		//		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * shootForce);
+		//		boneProjectile.GetComponent<Brain> ().moveDirection = fireDirection;
+	}
+
+	void ShootBrain(Vector3 direction){
+		Quaternion rot = Quaternion.LookRotation (direction);
+		Transform boneProjectile = Instantiate (brain);
+		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
+		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
+		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
+		boneProjectile.GetComponent<Rigidbody> ().AddForce (direction * shootForce);
+		boneProjectile.GetComponent<Brain> ().moveDirection = direction;
 
 	}
 
