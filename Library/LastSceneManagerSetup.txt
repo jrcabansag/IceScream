@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Forest.unity
+- path: Assets/DriveInMovies.unity
   isLoaded: 1
   isActive: 1
