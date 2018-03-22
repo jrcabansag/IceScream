@@ -271,7 +271,7 @@ public class Witch : MonoBehaviour {
 		if (phase == "Aware") {
 			float angryAdd = 0f;
 			if (lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration) {
-				angryAdd = 40f;
+				angryAdd = 30f;
 			}
 			if (playerDistance < defaultWillShootDistance) {
 				Attack ();
@@ -296,13 +296,11 @@ public class Witch : MonoBehaviour {
 
 	void Attack(){
 		float randomValue = Random.Range (0f, 2f);
-		print ("RANDOM VALUE IS " + randomValue);
+		animator.SetTrigger ("IsAttacking");
 		if (randomValue <= 1f) {
-			print ("BAT ATTACK!");
-			animator.SetTrigger ("IsAttacking");
+			animator.SetInteger ("AttackType", 1);
 		} else {
-			print ("BRAIN ATTACK!");
-			animator.SetTrigger ("IsAttacking2");
+			animator.SetInteger ("AttackType", 2);
 		}
 	}
 

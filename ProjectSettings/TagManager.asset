@@ -18,6 +18,8 @@ TagManager:
   - Witch
   - MainMenuScreen
   - LevelSelectScreen
+  - DaisySign
+  - UniconeSign
   layers:
   - Default
   - TransparentFX

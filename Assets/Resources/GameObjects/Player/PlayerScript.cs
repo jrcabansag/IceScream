@@ -26,8 +26,16 @@ public class PlayerScript : MonoBehaviour {
 	public float shootForce = 1000f;
 	public Mesh pixieCut;
 	public Mesh iceCreamHat;
+	public Mesh bowlCut;
+	public Mesh normalHat;
+	public Mesh daisyHat;
 	public Material tan;
 	public Material pink;
+	public Material white;
+	public Material black;
+	public Material skin;
+	public Material zombieSkin;
+	public Material yellow;
 	private Transform iceCream;
 	private Transform iceCreamPuddle;
 	private Transform mainCamera;
@@ -61,16 +69,43 @@ public class PlayerScript : MonoBehaviour {
 		energyBar = transform.Find ("Bar").GetComponent<Bar>();
 		hearts = transform.Find ("Hearts").GetComponent<Hearts>();
 		ui = GameObject.FindGameObjectWithTag ("UI").GetComponent<UI> ();
+		ApplyHat ();
+		ApplyHair ();
+		ApplySkin ();
 	}
 
 	public void ApplyHair(){
-		transform.Find ("Hair").GetComponent<SkinnedMeshRenderer> ().sharedMesh = pixieCut;
+		if (GameData.PixieCut == true) {
+			transform.Find ("Hair").GetComponent<SkinnedMeshRenderer> ().sharedMesh = pixieCut;
+		} else {
+			transform.Find ("Hair").GetComponent<SkinnedMeshRenderer> ().sharedMesh = bowlCut;
+		}
+	}
+
+	public void ApplySkin(){
+		if (GameData.Zombified == true) {
+			Material[] skinMaterials = new Material[]{ black, zombieSkin};
+			transform.Find ("Body").GetComponent<SkinnedMeshRenderer> ().materials = skinMaterials;
+		} else {
+			Material[] skinMaterials = new Material[]{ black, skin};
+			transform.Find ("Body").GetComponent<SkinnedMeshRenderer> ().materials = skinMaterials;
+		}
 	}
 
 	public void ApplyHat(){
-		transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().sharedMesh = iceCreamHat;
-		Material[] iceCreamHatMaterials = new Material[]{ tan, pink };
-		transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().materials = iceCreamHatMaterials;
+		if (GameData.IceCreamHat == true) {
+			transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().sharedMesh = iceCreamHat;
+			Material[] iceCreamHatMaterials = new Material[]{ tan, pink };
+			transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().materials = iceCreamHatMaterials;
+		} else if (GameData.DaisyHat == true){
+			transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().sharedMesh = daisyHat;
+			Material[] daisyHatMaterials = new Material[]{ yellow, white };
+			transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().materials = daisyHatMaterials;
+		}else {
+			transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().sharedMesh = normalHat;
+			Material[] iceCreamHatMaterials = new Material[]{ white, pink };
+			transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().materials = iceCreamHatMaterials;
+		}
 	}
 
 	void Update () {
@@ -96,7 +131,7 @@ public class PlayerScript : MonoBehaviour {
 		foreach (RaycastHit hit in hits) {
 			//string hitTag = hit.transform.tag;
 			//if (hitTag == "Enemy" && hit.transform.gameObject.layer == 12) {
-			if (hit.transform.gameObject.layer == 12 || hit.transform.gameObject.layer == 10 || hit.transform.gameObject.layer == 19) {
+			if (hit.transform.gameObject.layer == 12 || hit.transform.gameObject.layer == 10 || hit.transform.gameObject.layer == 19 || hit.transform.gameObject.layer == 25) {
 				return new Vector3 (hit.transform.position.x, transform.position.y, hit.transform.position.z);
 			}
 		}

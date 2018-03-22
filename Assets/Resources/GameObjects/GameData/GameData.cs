@@ -8,6 +8,10 @@ public static class GameData {
 	private static int level2Rating = 0;
 	private static int level3Rating = 0;
 	private static int level4Rating = 0;
+	private static bool iceCreamHat = false;
+	private static bool pixieCut = false;
+	private static bool zombified = false;
+	private static bool daisyHat = false;
 
 	public static int Level1Rating
 	{
@@ -54,6 +58,54 @@ public static class GameData {
 		set
 		{
 			level4Rating = value;
+		}
+	}
+
+	public static bool IceCreamHat
+	{
+		get
+		{
+			return iceCreamHat;
+		}
+		set
+		{
+			iceCreamHat = value;
+		}
+	}
+
+	public static bool PixieCut
+	{
+		get
+		{
+			return pixieCut;
+		}
+		set
+		{
+			pixieCut = value;
+		}
+	}
+
+	public static bool Zombified
+	{
+		get
+		{
+			return zombified;
+		}
+		set
+		{
+			zombified = value;
+		}
+	}
+
+	public static bool DaisyHat
+	{
+		get
+		{
+			return daisyHat;
+		}
+		set
+		{
+			daisyHat = value;
 		}
 	}
 }

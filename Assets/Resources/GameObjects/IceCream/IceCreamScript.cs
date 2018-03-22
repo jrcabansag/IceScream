@@ -30,8 +30,8 @@ public class IceCreamScript : MonoBehaviour {
 			if (col.gameObject.layer == 12 || col.gameObject.layer == 19) {
 				Transform enemy = col.transform;
 				Bounds enemyBounds = enemy.GetComponent<Collider> ().bounds;
-				float topY = enemyBounds.center.y + enemyBounds.extents.y+0.2f;
-				Vector3 damagePosition = new Vector3 (enemy.position.x, topY+0.4f, enemy.position.z);
+				float topY = enemyBounds.center.y + enemyBounds.extents.y + 0.2f;
+				Vector3 damagePosition = new Vector3 (enemy.position.x, topY + 0.4f, enemy.position.z);
 				float timeDelta = Time.time - createdTime;
 				int intMax = (int)(powerDivisor / Mathf.Pow (timeDelta, powerExp));
 				if (intMax > 100) {
@@ -42,13 +42,13 @@ public class IceCreamScript : MonoBehaviour {
 					Transform damager = Instantiate (damageCanvas);
 					damager.position = damagePosition;
 					Damage damageScript = damager.GetComponent<Damage> ();
-					damageScript.SetDamage ((int)(intMax*ui.GetDamageMultiplier()));
+					damageScript.SetDamage ((int)(intMax * ui.GetDamageMultiplier ()));
 				} else {
 					Transform damageCanvas = ((GameObject)Resources.Load ("GameObjects/DamageCanvas/DamageCrit", typeof(GameObject))).transform;
 					Transform damager = Instantiate (damageCanvas);
 					damager.position = damagePosition;
 					DamageCrit damageScript = damager.GetComponent<DamageCrit> ();
-					damageScript.SetDamage ((int)(intMax*ui.GetDamageMultiplier()));
+					damageScript.SetDamage ((int)(intMax * ui.GetDamageMultiplier ()));
 				}
 				if (col.transform.tag == "Skeleton") {
 					SkeletonScript skeletonScript = enemy.GetComponent<SkeletonScript> ();
@@ -67,6 +67,8 @@ public class IceCreamScript : MonoBehaviour {
 					witch.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
 				}
 
+			} else if (col.gameObject.layer == 25) {
+				col.gameObject.GetComponent<Sign> ().Activated ();
 			}
 			iTween.ScaleTo (gameObject, iTween.Hash ("x", 0.1f, "y", 0.03f, "z", 0.1f, "time", 0.2f));
 		}

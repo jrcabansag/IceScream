@@ -65,7 +65,7 @@ public class Ghost : MonoBehaviour {
 		black = ((Material)Resources.Load ("Materials/Black", typeof(Material)));
 		ghostEyes = ((Material)Resources.Load ("Materials/GhostEyes", typeof(Material)));
 		eyes = transform.Find ("Eyes");
-		Randomify ();
+		//Randomify ();
 		healthBar = transform.Find ("Bar").GetComponent<Bar>();
 	}
 

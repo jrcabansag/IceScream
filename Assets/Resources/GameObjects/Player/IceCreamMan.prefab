@@ -1085,7 +1085,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1529740382737590}
-  m_LocalRotation: {x: -0.01590887, y: 0.71277183, z: 0.7010428, w: 0.015570209}
+  m_LocalRotation: {x: -0.01590887, y: 0.71277183, z: 0.7010428, w: 0.015570208}
   m_LocalPosition: {x: -0.101066045, y: 0.29911485, z: -0.0046887468}
   m_LocalScale: {x: 0.9999995, y: 0.99999976, z: 0.99997956}
   m_Children:
@@ -1252,7 +1252,7 @@ Transform:
   m_GameObject: {fileID: 1075534442708096}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -47.91, y: 0.14, z: -52.18}
-  m_LocalScale: {x: 0.8492511, y: 0.8492509, z: 0.8492509}
+  m_LocalScale: {x: 0.8492509, y: 0.8492509, z: 0.8492509}
   m_Children:
   - {fileID: 4655159235376098}
   - {fileID: 4915548535422134}
@@ -2193,8 +2193,16 @@ MonoBehaviour:
   shootForce: 1000
   pixieCut: {fileID: 4300002, guid: d20e26e5e8edb48a98232541bab8fcac, type: 3}
   iceCreamHat: {fileID: 4300026, guid: 4c4cbc5b7f94b4c2596d09ee504b7914, type: 3}
+  bowlCut: {fileID: 4300002, guid: c5ab6c7857513497480cb87f7953fe07, type: 3}
+  normalHat: {fileID: 4300038, guid: 0bc8884db28f5458fbb5adf7a2d62e06, type: 3}
+  daisyHat: {fileID: 4300024, guid: 7e5fc9900f30045e48c26a2ea1e468fb, type: 3}
   tan: {fileID: 2100000, guid: dbcc856167ad14a069d6f62e12f50c5e, type: 2}
   pink: {fileID: 2100000, guid: 0205e5c0d6a7c415c9b1db094b6d2d95, type: 2}
+  white: {fileID: 2100000, guid: 75465f601d7414e9c8acee3fc1b34520, type: 2}
+  black: {fileID: 2100000, guid: 34afaaca2361344d79daa869b8bfef49, type: 2}
+  skin: {fileID: 2100000, guid: fbcbb4ee1d2974e058d2025b8beb7c8e, type: 2}
+  zombieSkin: {fileID: 2100000, guid: 01da5c4d3c2684fd1b8da4f29d4025a2, type: 2}
+  yellow: {fileID: 2100000, guid: 4fd8cf566bf27432a8f8932f44c9a555, type: 2}
   lives: 3
 --- !u!114 &114465366357810794
 MonoBehaviour:
