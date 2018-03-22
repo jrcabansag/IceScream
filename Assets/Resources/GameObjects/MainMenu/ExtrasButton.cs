@@ -15,14 +15,14 @@ public class ExtrasButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonUp (0) && pointerStart) {
-			SceneManager.LoadScene (1);
+			SceneManager.LoadScene (5);
 		}
 	}
 
 	public void OnPointerEnter( PointerEventData eventData )
 	{
 		pointerStart = true;
-		iTween.ScaleTo (gameObject, iTween.Hash ("x", 1.05f, "y", 1.05f, "time", 0.5f));
+		iTween.ScaleTo (gameObject, iTween.Hash ("x", 1.08f, "y", 1.08f, "time", 0.5f));
 	}
 
 	public void OnPointerExit( PointerEventData eventData )

@@ -42,13 +42,16 @@ public class UI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey ("g")) {
+		if (Input.GetKey ("e")) {
 			if (myLives == 0) {
 				SceneManager.LoadScene (currentScene);
-			}
-			else if(monsterCount == 0){
+			} else if (monsterCount == 0) {
 				SceneManager.LoadScene (nextScene);
 			}
+		} else if (Input.GetKey ("r")) {
+			SceneManager.LoadScene (currentScene);
+		} else if (Input.GetKey (KeyCode.Escape)) {
+			SceneManager.LoadScene (0);
 		}
 		
 	}
@@ -117,6 +120,23 @@ public class UI : MonoBehaviour {
 		string ratingString = "RATING: ";
 		for(int a = 0; a < myLives; a++){
 			ratingString += "X";
+		}
+		if (currentScene == 1) {
+			if (myLives > GameData.Level1Rating) {
+				GameData.Level1Rating = (int)myLives;
+			}
+		} else if (currentScene == 2) {
+			if (myLives > GameData.Level2Rating) {
+				GameData.Level2Rating = (int)myLives;
+			}
+		} else if (currentScene == 3) {
+			if (myLives > GameData.Level3Rating) {
+				GameData.Level3Rating = (int)myLives;
+			}
+		} else if (currentScene == 4) {
+			if (myLives > GameData.Level4Rating) {
+				GameData.Level4Rating = (int)myLives;
+			}
 		}
 		damageText.SetText (ratingString);
 		combo.CrossFadeAlpha (1f, 0f, true);

@@ -16,6 +16,8 @@ TagManager:
   - Ghost
   - Enemy
   - Witch
+  - MainMenuScreen
+  - LevelSelectScreen
   layers:
   - Default
   - TransparentFX
@@ -42,7 +44,7 @@ TagManager:
   - Heartbreak
   - Nothing
   - Boundary
-  - 
+  - Sign
   - 
   - 
   - 

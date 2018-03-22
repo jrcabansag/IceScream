@@ -24,6 +24,10 @@ public class PlayerScript : MonoBehaviour {
 	public float minMovementSwitchTime = 0.5f;
 	public float switchTimeAdvance = 0.02f;
 	public float shootForce = 1000f;
+	public Mesh pixieCut;
+	public Mesh iceCreamHat;
+	public Material tan;
+	public Material pink;
 	private Transform iceCream;
 	private Transform iceCreamPuddle;
 	private Transform mainCamera;
@@ -57,6 +61,16 @@ public class PlayerScript : MonoBehaviour {
 		energyBar = transform.Find ("Bar").GetComponent<Bar>();
 		hearts = transform.Find ("Hearts").GetComponent<Hearts>();
 		ui = GameObject.FindGameObjectWithTag ("UI").GetComponent<UI> ();
+	}
+
+	public void ApplyHair(){
+		transform.Find ("Hair").GetComponent<SkinnedMeshRenderer> ().sharedMesh = pixieCut;
+	}
+
+	public void ApplyHat(){
+		transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().sharedMesh = iceCreamHat;
+		Material[] iceCreamHatMaterials = new Material[]{ tan, pink };
+		transform.Find ("IceCreamHat").GetComponent<SkinnedMeshRenderer> ().materials = iceCreamHatMaterials;
 	}
 
 	void Update () {
@@ -289,7 +303,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void UpdateHearts(){
-		if (Time.time - lastHitTime < showHeartTime) {
+		if (lastHitTime != 0 && Time.time - lastHitTime < showHeartTime) {
 			hearts.Show ();
 		} else {
 			hearts.Hide ();

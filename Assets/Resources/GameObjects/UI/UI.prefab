@@ -160,7 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03119398f3451a9c736d9f1fcbea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterCount: 5
+  monsterCount: 6
+  nextScene: 2
+  currentScene: 1
 --- !u!114 &114204784641734470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -919,7 +921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0000076294, y: -18.336792}
+  m_AnchoredPosition: {x: -0.0000076294, y: -18.336823}
   m_SizeDelta: {x: 268.89, y: 101.41}
   m_Pivot: {x: 0.5, y: 0.8644963}
 --- !u!224 &224876475367177968

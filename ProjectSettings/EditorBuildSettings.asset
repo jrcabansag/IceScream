@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Forest.unity
     guid: 02a6d1a1d08f74e74a294a33e8226dd1
+  - enabled: 1
+    path: Assets/Extras.unity
+    guid: 08b5f3f6efcc8410fac253069b5df60a

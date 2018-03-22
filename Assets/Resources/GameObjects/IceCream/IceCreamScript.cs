@@ -8,7 +8,7 @@ public class IceCreamScript : MonoBehaviour {
 	private float createdTime;
 	public float powerDivisor = 10f;
 	public float powerExp = 1f;
-	private bool isActive = true;
+	public bool isActive = true;
 	private UI ui;
 
 	void Start () {
