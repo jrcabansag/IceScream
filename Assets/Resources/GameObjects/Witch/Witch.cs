@@ -295,7 +295,7 @@ public class Witch : MonoBehaviour {
 	}
 
 	void Attack(){
-		if (Random.Range (0, 3) <= 1) {
+		if (Random.Range (0f, 2f) <= 1f) {
 			print ("BAT ATTACK!");
 			animator.SetTrigger ("IsAttacking");
 		} else {

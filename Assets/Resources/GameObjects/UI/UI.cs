@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class UI : MonoBehaviour {
@@ -17,6 +18,9 @@ public class UI : MonoBehaviour {
 	private int comboCount = 0;
 	private float damageMultiplier = 1;
 	private float myLives = 3;
+	public int nextScene = 2;
+	public int currentScene = 1;
+
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +42,14 @@ public class UI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKey ("g")) {
+			if (myLives == 0) {
+				SceneManager.LoadScene (currentScene);
+			}
+			else if(monsterCount == 0){
+				SceneManager.LoadScene (nextScene);
+			}
+		}
 		
 	}
 

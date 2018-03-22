@@ -1333,8 +1333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomPercent: 0.2
-  defaultCloseDistance: 7
-  defaultSeeDistance: 15
+  defaultCloseDistance: 5
+  defaultSeeDistance: 20
   defaultViewAngle: 63.10078
   defaultWillShootDistance: 2
   walkAngleMax: 35

@@ -7,10 +7,16 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/MainMenu.unity
-    guid: 92fc6ff93e2984cb4ad8a0f04ff0680b
+    guid: 7a7f8436b1a0b4fba8a6910fcf2faf37
   - enabled: 1
-    path: Assets/Movement.unity
+    path: Assets/DriveInMovies.unity
     guid: 585dc287c56774823bfa1a6f5b4cd875
   - enabled: 1
-    path: Assets/Movement2.unity
-    guid: b880f7753118743e09ea5c44dbfa5fd6
+    path: Assets/Garden.unity
+    guid: 9722868eaf5f3422d82768d603c0b961
+  - enabled: 1
+    path: Assets/Graveyard.unity
+    guid: 626e03833dac1444f8d4d293aa6696af
+  - enabled: 1
+    path: Assets/Forest.unity
+    guid: 02a6d1a1d08f74e74a294a33e8226dd1

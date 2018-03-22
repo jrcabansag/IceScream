@@ -123,7 +123,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4779879939875374, guid: 79fbaa478c37b4b78a9e0f47de2983a3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.9
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4779879939875374, guid: 79fbaa478c37b4b78a9e0f47de2983a3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -131,7 +131,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4779879939875374, guid: 79fbaa478c37b4b78a9e0f47de2983a3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -72.2
+      value: -68.1
       objectReference: {fileID: 0}
     - target: {fileID: 4779879939875374, guid: 79fbaa478c37b4b78a9e0f47de2983a3, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6475,7 +6475,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4558405416208500, guid: 7fde977ed9e08430eadb350c4257c609, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 22.5
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 4558405416208500, guid: 7fde977ed9e08430eadb350c4257c609, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10902,6 +10902,16 @@ Prefab:
         type: 2}
       propertyPath: monsterCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114603765296374, guid: a395b00585c4f482fbb40e4326a9fd2e,
+        type: 2}
+      propertyPath: currentScene
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114603765296374, guid: a395b00585c4f482fbb40e4326a9fd2e,
+        type: 2}
+      propertyPath: nextScene
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a395b00585c4f482fbb40e4326a9fd2e, type: 2}

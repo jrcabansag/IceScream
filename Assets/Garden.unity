@@ -10077,6 +10077,16 @@ Prefab:
       propertyPath: monsterCount
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114114603765296374, guid: a395b00585c4f482fbb40e4326a9fd2e,
+        type: 2}
+      propertyPath: currentScene
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114603765296374, guid: a395b00585c4f482fbb40e4326a9fd2e,
+        type: 2}
+      propertyPath: nextScene
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a395b00585c4f482fbb40e4326a9fd2e, type: 2}
   m_IsPrefabParent: 0

@@ -20,6 +20,7 @@ public class CameraScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").transform.Find ("Armature_001/LowerBody");
+		transform.position = player.position + offset;
 		//player = GameObject.FindGameObjectWithTag ("Player").transform.Find ("Armature_001/LowerBody/UpperBody/Head");
 		defaultRotation = transform.rotation;
 

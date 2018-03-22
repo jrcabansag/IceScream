@@ -68,6 +68,9 @@
      <Compile Include="Assets\Resources\GameObjects\Hearts\Hearts.cs" />
      <Compile Include="Assets\Resources\GameObjects\IceCream\IceCreamScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\IceCreamPuddle\IceCreamPuddle.cs" />
+     <Compile Include="Assets\Resources\GameObjects\MainMenu\ExtrasButton.cs" />
+     <Compile Include="Assets\Resources\GameObjects\MainMenu\MainMenu.cs" />
+     <Compile Include="Assets\Resources\GameObjects\MainMenu\StartButton.cs" />
      <Compile Include="Assets\Resources\GameObjects\Orb\Orb.cs" />
      <Compile Include="Assets\Resources\GameObjects\Player\PlayerScript.cs" />
      <Compile Include="Assets\Resources\GameObjects\Skeleton\SkeletonScript.cs" />
@@ -77,8 +80,6 @@
      <Compile Include="Assets\Resources\GameObjects\VampireBat\VampireBat.cs" />
      <Compile Include="Assets\Resources\GameObjects\Witch\Witch.cs" />
      <Compile Include="Assets\Resources\GameObjects\Zombie\Zombie.cs" />
-     <Compile Include="Assets\Resources\MainMenu\MainMenu.cs" />
-     <Compile Include="Assets\Resources\MainMenu\MainMenuIceCreamScript.cs" />
      <Compile Include="Assets\Resources\Plugins\Pixelplacement\iTween\iTween.cs" />
      <Compile Include="Assets\Resources\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
      <Compile Include="Assets\Resources\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
