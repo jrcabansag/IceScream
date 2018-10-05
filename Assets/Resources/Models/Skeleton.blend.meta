@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: d6e9e311177a743b588aa0596a6e0c78
-timeCreated: 1516260559
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Cylinder
     100002: Cylinder_001
@@ -195,6 +193,7 @@ ModelImporter:
     13700002: Cylinder_000
     13700004: Cylinder_001
     13700006: Cylinder_002
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -214,6 +213,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -413,6 +413,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
