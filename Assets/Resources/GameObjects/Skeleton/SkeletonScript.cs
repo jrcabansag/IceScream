@@ -26,8 +26,8 @@ public class SkeletonScript : Enemy {
 		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * dieForce);
+		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * kDieForce);
+		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * kDieForce);
         transform.Find("SkeletonAimHelp").gameObject.layer = 11;
     }
 
@@ -40,7 +40,7 @@ public class SkeletonScript : Enemy {
 		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
 		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
 		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
-		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * shootForce);
+		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * kShootForce);
 		boneProjectile.GetComponent<Bone> ().moveDirection = fireDirection;
 	}
 }

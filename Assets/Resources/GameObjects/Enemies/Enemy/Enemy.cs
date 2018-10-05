@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+The base enemy class for all enemies
+*/
 public class Enemy : MonoBehaviour
 {
     protected static Transform player;
@@ -16,31 +19,33 @@ public class Enemy : MonoBehaviour
     protected float kViewAngle = 70f;
     protected float kWillShootDistance = 2f;
     protected float kMovementSpeed = 7f;
+    protected float kWalkAngleMax = 35f;
+    protected float kRotationSpeed = 3f;
+    protected float kAngryDistanceMultiplier = 2.5f;
+    protected float kAngryDuration = 5f;
+    protected float kSuspiciousDistance = 5f;
+    protected float kSuspiciousDuration = 2f;
+    protected float kSuspiciousAfterAwareDuration = 2f;
+    protected float kShootForce = 1500f;
+    protected float kJoltedDuration = 1f;
+    protected float kDieForce = 2000f;
+    protected int kTotalHealth = 300;
 
-    public float walkAngleMax = 35f;
-    public float rotationSpeed = 3f;
-    public float angryDistanceMultiplier = 2.5f;
-    public float angryDuration = 5f;
-    public float suspiciousDistance = 5f;
-    public float suspiciousDuration = 2f;
-    public float suspiciousAfterAwareDuration = 2f;
-    public float shootForce = 1500f;
-    public float joltedDuration = 1f;
-    public float dieForce = 2000f;
-    public int currentHealth = 300;
-    public int totalHealth = 300;
+    protected int currentHealth;
     protected float lastAngryTime;
     protected float lastSuspiciousTime;
     protected float lastJoltedTime;
     protected float lastAwareTime;
     protected bool isAlive = true;
+    private string phase = "Idle";
+    private bool isWalking = false;
+
+
     private Vector3 playerPosition;
     private Vector3 playerLocalPosition;
     private Quaternion playerLocalAngles;
     private Vector3 playerViewAngles;
     private float playerDistance;
-    private string phase = "Idle";
-    private bool isWalking = false;
 
     protected virtual void Start()
     {
@@ -57,6 +62,7 @@ public class Enemy : MonoBehaviour
         enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript>();
         enemyEmoteCanvas.HideImmediate();
         RandomizeConstants();
+        currentHealth = kTotalHealth;
     }
 
     protected virtual void Update()
@@ -82,7 +88,6 @@ public class Enemy : MonoBehaviour
         gameObject.layer = 11;
         animator.enabled = false;
         ui.UpdateCombo();
-        //    Destroy(enemyEmoteCanvas.gameObject);
     }
 
     void FixedUpdate()
@@ -112,19 +117,19 @@ public class Enemy : MonoBehaviour
             float seeDistance = kSeeDistance;
             float searchingDistance = kSeeDistance;
             float viewAngle = kViewAngle;
-            if (lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration)
+            if (lastAngryTime != 0 && Time.time - lastAngryTime < kAngryDuration)
             {
                 viewAngle = 360f;
                 searchingDistance = 1000f;
             }
             if (playerDistance < closeDistance)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, playerLocalAngles, kRotationSpeed * Time.deltaTime);
                 phase = "Aware";
             }
             else if (((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance))
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, playerLocalAngles, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, playerLocalAngles, kRotationSpeed * Time.deltaTime);
                 phase = "Aware";
             }
             else if (((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < searchingDistance))
@@ -132,7 +137,7 @@ public class Enemy : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, playerLocalAngles, 1f * Time.deltaTime);
                 phase = "Searching";
             }
-            else if (playerDistance < closeDistance + suspiciousDistance || ((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance + suspiciousDistance))
+            else if (playerDistance < closeDistance + kSuspiciousDistance || ((playerViewAngles.y < viewAngle || playerViewAngles.y > 360 - viewAngle) && playerDistance < seeDistance + kSuspiciousDistance))
             {
                 if (!IsStillAware())
                 {
@@ -155,15 +160,15 @@ public class Enemy : MonoBehaviour
     {
         if (player.GetComponent<PlayerScript>().lives > 0)
         {
-            if (phase == "Aware" && (playerViewAngles.y < walkAngleMax || 360f - playerViewAngles.y < walkAngleMax))
+            if (phase == "Aware" && (playerViewAngles.y < kWalkAngleMax || 360f - playerViewAngles.y < kWalkAngleMax))
             {
                 transform.Translate(Vector3.Normalize(playerLocalPosition) * kMovementSpeed * Time.deltaTime, Space.World);
                 isWalking = true;
                 MakeStillAware();
             }
-            else if (phase == "Searching" && (playerViewAngles.y < walkAngleMax || 360f - playerViewAngles.y < walkAngleMax) && CheckIfPlayerInSight())
+            else if (phase == "Searching" && (playerViewAngles.y < kWalkAngleMax || 360f - playerViewAngles.y < kWalkAngleMax) && CheckIfPlayerInSight())
             {
-                if (Time.time - lastJoltedTime > joltedDuration)
+                if (Time.time - lastJoltedTime > kJoltedDuration)
                 {
                     transform.Translate(Vector3.Normalize(playerLocalPosition) * kMovementSpeed * Time.deltaTime, Space.World);
                     isWalking = true;
@@ -208,12 +213,12 @@ public class Enemy : MonoBehaviour
 
     bool IsStillAware()
     {
-        return lastAwareTime != 0f && Time.time - lastAwareTime < suspiciousAfterAwareDuration;
+        return lastAwareTime != 0f && Time.time - lastAwareTime < kSuspiciousAfterAwareDuration;
     }
 
     bool IsAngry()
     {
-        return lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration;
+        return lastAngryTime != 0 && Time.time - lastAngryTime < kAngryDuration;
     }
 
     void SetEmote()
@@ -222,11 +227,11 @@ public class Enemy : MonoBehaviour
         {
             enemyEmoteCanvas.HideImmediate();
         }
-        else if (lastSuspiciousTime != 0f && Time.time - lastSuspiciousTime < suspiciousDuration)
+        else if (lastSuspiciousTime != 0f && Time.time - lastSuspiciousTime < kSuspiciousDuration)
         {
             enemyEmoteCanvas.Show();
         }
-        else if (lastAwareTime != 0f && Time.time - lastAwareTime < suspiciousAfterAwareDuration)
+        else if (lastAwareTime != 0f && Time.time - lastAwareTime < kSuspiciousAfterAwareDuration)
         {
             //enemyEmoteCanvas.SetText ("...");
         }
@@ -269,7 +274,7 @@ public class Enemy : MonoBehaviour
         if (phase == "Aware")
         {
             float angryAdd = 0f;
-            if (lastAngryTime != 0 && Time.time - lastAngryTime < angryDuration)
+            if (lastAngryTime != 0 && Time.time - lastAngryTime < kAngryDuration)
             {
                 angryAdd = 40f;
             }
@@ -322,7 +327,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            healthBar.SetValue(currentHealth * 1f / totalHealth);
+            healthBar.SetValue(currentHealth * 1f / kTotalHealth);
         }
     }
 
