@@ -2,31 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonScript : MonoBehaviour {
-	public float randomPercent = 0.2f;
-	public float defaultCloseDistance = 10f;
-	public float defaultSeeDistance = 20f;
-	public float defaultViewAngle = 70f;
-	public float defaultWillShootDistance = 2f;
-	public float walkAngleMax = 35f;
-	public float rotationSpeed = 3f;
-	public float movementSpeed = 7f;
-	public float angryDistanceMultiplier = 2.5f;
-	public float angryDuration = 5f;
-	public float suspiciousDistance = 5f;
-	public float suspiciousDuration = 2f;
-	public float suspiciousAfterAwareDuration = 2f;
-	public float shootForce = 1500f;
-	public float joltedDuration = 1f;
-	public float dieForce = 2000f;
-	public int currentHealth = 300;
-	public int totalHealth = 300;
+public class SkeletonScript : Enemy {
 	private Bar healthBar;
-	private static Transform player;
-	private static UI ui;
-	private Animator animator;
-	private Transform emoteCanvas;
-	private EnemyEmoteCanvasScript enemyEmoteCanvas;
 	private Vector3 playerPosition;
 	private Vector3 playerLocalPosition;
 	private Quaternion playerLocalAngles;
@@ -40,30 +17,24 @@ public class SkeletonScript : MonoBehaviour {
 	private float lastAwareTime;
 	private bool isAlive = true;
 	private Transform bone;
+    private Transform emoteCanvas;
+    private EnemyEmoteCanvasScript enemyEmoteCanvas;
+    private Animator animator;
 
-	void onEnable(){
+    void onEnable(){
 		//Die ();
 	}
 
-	void Start () {
-		if (player == null) {
-			player = GameObject.FindGameObjectWithTag ("Player").transform;
-		}
-		if (ui == null) {
-			ui = GameObject.FindGameObjectWithTag ("UI").GetComponent<UI> ();
-		}
-		animator = transform.GetComponent<Animator> ();
-//		Transform emoteCanvas = ((GameObject)Resources.Load("GameObjects/EnemyEmoteCanvas/EnemyEmoteCanvas", typeof(GameObject))).transform;
-//		Transform myEmoteCanvas = Instantiate (emoteCanvas);
-//		myEmoteCanvas.SetParent (transform);
-		//myEmoteCanvas.localPosition = new Vector3 (0f, 7.3f, 0f);
-		emoteCanvas = transform.Find("EnemyEmoteCanvas");
-		enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript> ();
-		enemyEmoteCanvas.HideImmediate ();
+    protected new void Start(){
+        base.Start();
 		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
 		Randomify ();
 		healthBar = transform.Find ("Bar").GetComponent<Bar>();
-	}
+        emoteCanvas = transform.Find("EnemyEmoteCanvas");
+        enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript>();
+        enemyEmoteCanvas.HideImmediate();
+        animator = transform.GetComponent<Animator>();
+    }
 
 	void GetRagdolls(){
 	}
