@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkeletonScript : Enemy {
-	private Bar healthBar;
 	private Vector3 playerPosition;
 	private Vector3 playerLocalPosition;
 	private Quaternion playerLocalAngles;
@@ -16,28 +15,14 @@ public class SkeletonScript : Enemy {
 	private float lastJoltedTime;
 	private float lastAwareTime;
 	private bool isAlive = true;
-	private Transform bone;
-    private Transform emoteCanvas;
-    private EnemyEmoteCanvasScript enemyEmoteCanvas;
-    private Animator animator;
+    private Transform bone;
 
-    void onEnable(){
-		//Die ();
-	}
 
     protected new void Start(){
         base.Start();
 		bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
 		Randomify ();
-		healthBar = transform.Find ("Bar").GetComponent<Bar>();
-        emoteCanvas = transform.Find("EnemyEmoteCanvas");
-        enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript>();
-        enemyEmoteCanvas.HideImmediate();
-        animator = transform.GetComponent<Animator>();
     }
-
-	void GetRagdolls(){
-	}
 
 	void Die(Vector3 direction){
 		//direction = Vector3.Normalize (player.forward);

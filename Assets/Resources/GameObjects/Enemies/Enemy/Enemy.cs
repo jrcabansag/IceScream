@@ -3,6 +3,13 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    protected static Transform player;
+    protected static UI ui;
+
+    protected Animator animator;
+    protected Bar healthBar;
+    protected EnemyEmoteCanvasScript enemyEmoteCanvas;
+
     public float randomPercent = 0.2f;
     public float defaultCloseDistance = 10f;
     public float defaultSeeDistance = 20f;
@@ -21,10 +28,7 @@ public class Enemy : MonoBehaviour
     public float dieForce = 2000f;
     public int currentHealth = 300;
     public int totalHealth = 300;
-    protected static Transform player;
-    protected static UI ui;
 
-    // Use this for initialization
     protected void Start()
     {
         if (player == null)
@@ -35,6 +39,10 @@ public class Enemy : MonoBehaviour
         {
             ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         }
+        animator = transform.GetComponent<Animator>();
+        healthBar = transform.Find("Bar").GetComponent<Bar>();
+        enemyEmoteCanvas = transform.Find("EnemyEmoteCanvas").GetComponent<EnemyEmoteCanvasScript>();
+        enemyEmoteCanvas.HideImmediate();
     }
 
     // Update is called once per frame
