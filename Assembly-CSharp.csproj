@@ -72,7 +72,7 @@
     <Compile Include="Assets\Resources\GameObjects\DamageCanvas\DamagesScript.cs" />
     <Compile Include="Assets\Resources\GameObjects\Devil\Devil.cs" />
     <Compile Include="Assets\Resources\GameObjects\Enemies\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Resources\GameObjects\EnemyEmoteCanvas\EnemyEmoteCanvasScript.cs" />
+    <Compile Include="Assets\Resources\GameObjects\EnemyEmoteCanvasScript\EnemyEmoteCanvasScript.cs" />
     <Compile Include="Assets\Resources\GameObjects\Extras\ExtrasUI.cs" />
     <Compile Include="Assets\Resources\GameObjects\Extras\Sign.cs" />
     <Compile Include="Assets\Resources\GameObjects\GameData\GameData.cs" />
