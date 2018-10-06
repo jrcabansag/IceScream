@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     protected static string kAngryPhase = "Angry";
     protected static string kIdlePhase = "Idle";
     protected static string kSuspiciousPhase = "Suspicious";
+    protected static float kDestroyDuration = 5f;
     protected static int kInactiveLayer = 11;
 
     // Constants
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
     protected int health;
     protected Bar healthBar;
     protected bool isAlive = true;
+    protected bool isWalking = false;
     protected float lastHitTime;
     protected float lastAngryTime;
     protected float lastJoltedTime;
@@ -79,6 +81,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Die(Vector3 direction) {
         Ragdoll();
+        Destroy(gameObject, kDestroyDuration);
+        player.GetComponent<PlayerScript>().BoostEnergy();
         transform.Find("AimHelp").gameObject.layer = kInactiveLayer;
         gameObject.layer = kInactiveLayer;
         Destroy(enemyEmoteCanvas.gameObject);
@@ -133,17 +137,20 @@ public class Enemy : MonoBehaviour
                 if (isPlayerInWalkAngleRange) {
                     MoveTowardsPlayer(kMovementSpeed);
                 } else {
-                    UpdateWalkingAnimation(false);
+                    isWalking = false;
+                    UpdateWalkingAnimation();
                 }
             }
         } else {
-            UpdateWalkingAnimation(false);
+            isWalking = false;
+            UpdateWalkingAnimation();
         }
     }
 
     private void MoveTowardsPlayer(float movementSpeed){
         transform.Translate(Vector3.Normalize(playerRelativePosition) * movementSpeed * Time.deltaTime, Space.World);
-        UpdateWalkingAnimation(true);
+        isWalking = true;
+        UpdateWalkingAnimation();
     }
 
     private void RotateToPlayer(float rotationSpeed){
@@ -155,8 +162,6 @@ public class Enemy : MonoBehaviour
             health -= damage;
             if (health <= 0) {
                 Die(direction);
-                Destroy(gameObject, 5f);
-                player.GetComponent<PlayerScript>().BoostEnergy();
             } else {
                 UpdateHealthBar();
                 UpdateLastHitTime();
@@ -270,7 +275,7 @@ public class Enemy : MonoBehaviour
         lastSuspiciousTime = Time.time;
     }
 
-    private void UpdateWalkingAnimation(bool isWalking) {
+    private void UpdateWalkingAnimation() {
         animator.SetBool("IsWalking", isWalking);
     }
 

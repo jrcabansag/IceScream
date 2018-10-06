@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 342}
   m_MaxSize: {x: 12008, y: 8042}
   vertical: 0
-  controlID: 34627
+  controlID: 40026
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 342}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 1
-  controlID: 34628
+  controlID: 40027
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 34606
+  controlID: 40028
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -202,10 +202,10 @@ MonoBehaviour:
     height: 633
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ce410000
+    scrollPos: {x: 0, y: 8.000488}
+    m_SelectedIDs: 2a2e0000
     m_LastClickedID: 0
-    m_ExpandedIDs: 9ededcffcededcff88dfdcff8edfdcffcee9dcff4a2de4ffb02de4ffe02de4ffa0aef9ffc8aef9ffdeaef9ffe2aef9ff0eaff9ff22aff9ff2aaff9ff16b0f9ff40b4f9ff86b5f9ff56b7f9ff7eb7f9ffd8b7f9ffe0b7f9ff1ab9f9ffe6fbffff00000000
+    m_ExpandedIDs: ecffd8ff8800d9ffc200d9ffc400d9ff2c0dd9ffac3ed9ff2251d9ff8a5dd9ff9ededcffcededcff88dfdcff8edfdcffcee9dcff4a2de4ffb02de4ffe02de4ffa0aef9ffc8aef9ffdeaef9ffe2aef9ff0eaff9ff22aff9ff2aaff9ff16b0f9ff40b4f9ff86b5f9ff56b7f9ff7eb7f9ffd8b7f9ffe0b7f9ff1ab9f9ffe6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -282,14 +282,14 @@ MonoBehaviour:
     height: 633
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 31967.5896589756
+  lastFramingTime: 35612.537402033806
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 20.548061, y: 2.8963614, z: 6.81322}
+    m_Target: {x: 5.8913875, y: 4.4212627, z: -53.771156}
     speed: 2
-    m_Value: {x: 20.548061, y: 2.8963614, z: 6.81322}
+    m_Value: {x: 5.8913875, y: 4.4212627, z: -53.771156}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -317,13 +317,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.051210806, y: -0.054802105, z: 0.0028144657, w: -0.9971792}
+    m_Target: {x: -0.12915985, y: 0.13844725, z: -0.018214313, w: -0.9817425}
     speed: 2
-    m_Value: {x: -0.051210806, y: -0.054802105, z: 0.0028144654, w: -0.9971792}
+    m_Value: {x: -0.12915985, y: 0.13844725, z: -0.018214311, w: -0.9817425}
   m_Size:
-    m_Target: 15.784724
+    m_Target: 36.137737
     speed: 2
-    m_Value: 15.784724
+    m_Value: 36.137737
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -425,19 +425,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/GameObjects/Vampire
+    - Assets/Resources/GameObjects/Ghost
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/GameObjects/Vampire
+  - Assets/Resources/GameObjects/Ghost
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/jr/Code/IceScream
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 519.99854}
-    m_SelectedIDs: 4a330000
-    m_LastClickedID: 13130
+    scrollPos: {x: 0, y: 309.99982}
+    m_SelectedIDs: e62f0000
+    m_LastClickedID: 12262
     m_ExpandedIDs: 00000000422a0000d62b0000562e0000702f000090320000b43300006e340000aa38000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -491,10 +491,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 3a2d0000
-    m_LastClickedInstanceID: 11578
+    m_SelectedInstanceIDs: 2a2e0000
+    m_LastClickedInstanceID: 11818
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000fc050000a2280000a4280000c62d0000d429000016290000602e0000682e0000ca2c00006a2b0000
+    m_ExpandedInstanceIDs: c6230000fc050000a2280000a4280000c62d0000d429000016290000602e0000682e0000ca2c0000ae350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -2358528
+  m_LastSelectedObjectID: -2676140
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -995,10 +995,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 856c0403b6139464caa37f9ed77251f9,
+  m_AnimatorController: {fileID: 9100000, guid: 570ddf7363f6145d8807bc827515b4a9,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107044716027521148, guid: 856c0403b6139464caa37f9ed77251f9,
+  - m_Target: {fileID: 1107044716027521148, guid: 570ddf7363f6145d8807bc827515b4a9,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_MiniTool: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_CurrentEditor: 1
+  m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 2
 --- !u!114 &15

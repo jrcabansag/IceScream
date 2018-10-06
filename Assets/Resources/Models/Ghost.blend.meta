@@ -41,6 +41,8 @@ ModelImporter:
     100070: UpperLeg_R
     100072: Eyes
     100074: Head_0
+    100076: Armature
+    100078: GhostHead
     400000: ApronRibbon
     400002: ApronRibbonRopeL
     400004: ApronRibbonRopeR
@@ -79,6 +81,8 @@ ModelImporter:
     400070: UpperLeg_R
     400072: Eyes
     400074: Head_0
+    400076: Armature
+    400078: GhostHead
     2100000: Black_001
     2100002: White
     4300000: Hair
@@ -90,6 +94,7 @@ ModelImporter:
     4300012: Body
     4300014: Eyes
     4300016: Head
+    4300018: GhostHead
     7400000: Default Take
     7400002: Attacking
     7400004: Attacking_001
@@ -118,6 +123,7 @@ ModelImporter:
     13700012: Shirt
     13700014: Eyes
     13700016: Head
+    13700018: GhostHead
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -591,7 +597,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

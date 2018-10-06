@@ -50,12 +50,9 @@ public class IceCreamScript : MonoBehaviour {
 					DamageCrit damageScript = damager.GetComponent<DamageCrit> ();
 					damageScript.SetDamage ((int)(intMax * ui.GetDamageMultiplier ()));
 				}
-                if (col.transform.tag == "Skeleton" || col.transform.tag == "Zombie" || col.transform.tag == "Vampire") {
+                if (col.transform.tag == "Skeleton" || col.transform.tag == "Zombie" || col.transform.tag == "Vampire" || col.transform.tag == "Ghost") {
 					Enemy enemyScript = enemy.GetComponent<Enemy> ();
 					enemyScript.Hit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
-				} else if (col.transform.tag == "Ghost") {
-					Ghost ghost = enemy.GetComponent<Ghost> ();
-					ghost.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
 				} else if (col.transform.tag == "Witch") {
 					Witch witch = enemy.GetComponent<Witch> ();
 					witch.WasHit ((int)(intMax * ui.GetDamageMultiplier ()), transform.up);
