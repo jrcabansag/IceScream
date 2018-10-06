@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkeletonScript : Enemy {
-    private static Transform bone;
+    private float kDieHeadForce = 300f;
+    private float kDieUpperBodyForce = 4000f;
+    private float kProjectileShootForce = 1500f;
 
+    private static Transform bone;
 
     protected override void Start(){
         base.Start();
@@ -26,13 +29,19 @@ public class SkeletonScript : Enemy {
 		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * kDieForce);
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * kDieForce);
+        transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * kDieUpperBodyForce);
+		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * kDieHeadForce);
         transform.Find("SkeletonAimHelp").gameObject.layer = 11;
     }
 
+    protected override void RandomizeConstants()
+    {
+        base.RandomizeConstants();
+        kDieHeadForce = Randomize(kDieHeadForce);
+        kDieUpperBodyForce = Randomize(kDieUpperBodyForce);
+    }
 
-	void FireBone(){
+    void FireBone(){
 		Vector3 fireDirection = player.transform.position-transform.position;
 		fireDirection = (fireDirection.normalized+transform.forward).normalized;
 		Quaternion rot = Quaternion.LookRotation (fireDirection);
@@ -40,7 +49,7 @@ public class SkeletonScript : Enemy {
 		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
 		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
 		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
-		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * kShootForce);
+		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * kProjectileShootForce);
 		boneProjectile.GetComponent<Bone> ().moveDirection = fireDirection;
 	}
 }
