@@ -12,40 +12,34 @@ public class Zombie : Enemy {
     private static float kProjectileYPosition = 3f;
     private static int kZombieTotalHealth = 500;
 
-    protected override void Start()
-    {
+    protected override void Start() {
         kTotalHealth = kZombieTotalHealth;
         base.Start();
-        if (kProjectile == null)
-        {
+        if (kProjectile == null) {
             kProjectile = ((GameObject)Resources.Load(kProjectilePath, typeof(GameObject))).transform;
         }
     }
 
-    protected override void Die(Vector3 direction)
-    {
+    protected override void Die(Vector3 direction) {
         base.Die(direction);
         transform.Find("Armature/LowerBody/UpperBody").GetComponent<Rigidbody>().AddForce(direction * kDieUpperBodyForce);
         transform.Find("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody>().AddForce(direction * kDieHeadForce);
     }
 
-    protected override void RandomizeConstants()
-    {
+    protected override void RandomizeConstants() {
         base.RandomizeConstants();
         kDieHeadForce = Randomize(kDieHeadForce);
         kDieUpperBodyForce = Randomize(kDieUpperBodyForce);
     }
 
-    protected override void FireProjectile()
-    {
+    protected override void FireProjectile() {
         Vector3 projectileDirection = (playerRelativePosition.normalized+transform.forward).normalized;
         FireSingleProjectile(projectileDirection);
         FireSingleProjectile(Quaternion.Euler(0f, kProjectileRotation, 0)*projectileDirection);
         FireSingleProjectile(Quaternion.Euler(0f, -kProjectileRotation, 0) * projectileDirection);
     }
 
-    private void FireSingleProjectile(Vector3 projectileDirection)
-    {
+    private void FireSingleProjectile(Vector3 projectileDirection) {
         Transform projectile = Instantiate(kProjectile);
         float projectileRotation = Quaternion.LookRotation(projectileDirection).eulerAngles.y;
         Vector3 projectilePosition = new Vector3(transform.position.x, kProjectileYPosition, transform.position.z);

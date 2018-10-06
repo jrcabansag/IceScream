@@ -51,8 +51,7 @@ public class Enemy : MonoBehaviour
     protected virtual void Start() {
         if (player == null) {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-        if (ui == null) {
+        } if (ui == null) {
             ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         }
         animator = transform.GetComponent<Animator>();
@@ -64,7 +63,7 @@ public class Enemy : MonoBehaviour
         phase = kIdlePhase;
     }
 
-    protected virtual void Ragdoll(){
+    protected virtual void Ragdoll() {
         transform.Find("Armature/LowerBody").GetComponent<Rigidbody>().isKinematic = false;
         transform.Find("Armature/LowerBody/UpperBody").GetComponent<Rigidbody>().isKinematic = false;
         transform.Find("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody>().isKinematic = false;
@@ -114,7 +113,7 @@ public class Enemy : MonoBehaviour
             } else if (IsPlayerWithin(kAngryDistance+kSuspiciousDistance) || (isPlayerInViewAngleRange && IsPlayerWithin(kViewDistance+kSuspiciousDistance))) {
                 phase = kSuspiciousPhase;
                 UpdateSuspiciousTime();
-            } else if (IsInFadingSuspicion()){
+            } else if (IsInFadingSuspicion()) {
                 phase = kSuspiciousPhase;
             } else {
                 phase = kIdlePhase;
@@ -151,23 +150,17 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, playerRelativeRotation, rotationSpeed * Time.deltaTime);
     }
 
-    public void Hit(int damage, Vector3 direction)
-    {
-        if (isAlive)
-        {
+    public void Hit(int damage, Vector3 direction) {
+        if (isAlive) {
             health -= damage;
-            if (health <= 0)
-            {
+            if (health <= 0) {
                 Die(direction);
                 Destroy(gameObject, 5f);
                 player.GetComponent<PlayerScript>().BoostEnergy();
-            }
-            else
-            {
+            } else {
                 UpdateHealthBar();
                 UpdateLastHitTime();
-                if (phase != kAngryPhase)
-                {
+                if (phase != kAngryPhase) {
                     animator.SetTrigger("IsJolted");
                     UpdateJoltedTime();
                 }
@@ -175,47 +168,35 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected virtual void FireProjectile(){
+    protected virtual void FireProjectile() {
         //No-op
     }
 
-    private void CheckToFire()
-    {
-        if (phase == kAngryPhase && !IsJolted())
-        {
+    private void CheckToFire() {
+        if (phase == kAngryPhase && !IsJolted()) {
             float wasHitRecentlyAdd = 0f;
             if (WasHitRecently()) {
                 wasHitRecentlyAdd = 40f;
             }
-            if (playerRelativeDistance < kAttackForSureDistance)
-            {
+            if (playerRelativeDistance < kAttackForSureDistance) {
                 animator.SetTrigger("IsAttacking");
             }
-            if (playerRelativeDistance < kAngryDistance)
-            {
-                if (Random.Range(0f, 100f) < (55f + wasHitRecentlyAdd) * Time.deltaTime)
-                {
+            if (playerRelativeDistance < kAngryDistance) {
+                if (Random.Range(0f, 100f) < (55f + wasHitRecentlyAdd) * Time.deltaTime) {
                     animator.SetTrigger("IsAttacking");
                 }
-            }
-            else if (playerRelativeDistance < kViewDistance)
-            {
-                if (Random.Range(0f, 100f) < (30f + wasHitRecentlyAdd) * Time.deltaTime)
-                {
+            } else if (playerRelativeDistance < kViewDistance) {
+                if (Random.Range(0f, 100f) < (30f + wasHitRecentlyAdd) * Time.deltaTime) {
                     animator.SetTrigger("IsAttacking");
                 }
-            }
-            else if (Random.Range(0f, 100f) < (15f + wasHitRecentlyAdd) * Time.deltaTime)
-            {
+            } else if (Random.Range(0f, 100f) < (15f + wasHitRecentlyAdd) * Time.deltaTime) {
                 animator.SetTrigger("IsAttacking");
             }
         }
     }
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.transform.tag == "Player")
-        {
+    private void OnCollisionEnter(Collision col) {
+        if (col.transform.tag == "Player") {
             //Make the force's y zero, so player isn't pushed up or down
             Vector3 myForward = transform.forward;
             myForward.y = 0f;
@@ -225,77 +206,59 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private bool IsJolted()
-    {
+    private bool IsJolted() {
         return IsTimeInDuration(lastJoltedTime, kJoltedDuration);
     }
 
-    private bool IsInFadingSuspicion()
-    {
+    private bool IsInFadingSuspicion() {
         return IsTimeInDuration(lastSuspiciousTime, kSuspiciousDuration) || IsTimeInDuration(lastAngryTime, kSuspiciousAfterAngryDuration);
     }
 
-    private bool IsPlayerWithin(float distance)
-    {
+    private bool IsPlayerWithin(float distance) {
         return playerRelativeDistance <= distance;
     }
 
-    protected bool IsTimeInDuration(float time, float timeDuration)
-    {
+    protected bool IsTimeInDuration(float time, float timeDuration) {
         return time != 0 && Time.time - time < timeDuration;
     }
 
-    private bool WasHitRecently()
-    {
+    private bool WasHitRecently() {
         return IsTimeInDuration(lastHitTime, kHitRecentlyDuration);
     }
 
-    private void UpdateAngryTime()
-    {
+    private void UpdateAngryTime() {
         lastAngryTime = Time.time;
     }
 
-    private void UpdateEmote()
-    {
-        if (phase == kSuspiciousPhase)
-        {
+    private void UpdateEmote() {
+        if (phase == kSuspiciousPhase) {
             enemyEmoteCanvas.Show();
-        }
-        else
-        {
+        } else {
             enemyEmoteCanvas.HideImmediate();
         }
     }
 
-    void UpdateHealthBar()
-    {
-        if (WasHitRecently())
-        {
-            if (health <= 0)
-            {
+    void UpdateHealthBar() {
+        if (WasHitRecently()) {
+            if (health <= 0) {
                 health = 0;
             }
             healthBar.SetValue(health * 1f / kTotalHealth);
             healthBar.Show();
-        }
-        else
-        {
+        } else {
             healthBar.Hide();
         }
     }
 
-    private void UpdateJoltedTime()
-    {
+    private void UpdateJoltedTime() {
         lastJoltedTime = Time.time;
     }
 
-    private void UpdateLastHitTime()
-    {
+    private void UpdateLastHitTime() {
         lastHitTime = Time.time;
     }
 
-    private void UpdatePlayerVariables()
-    {
+    private void UpdatePlayerVariables() {
         Vector3 playerPosition = player.position;
         playerRelativePosition = playerPosition - transform.position;
         playerRelativeDistance = Vector3.Magnitude(playerRelativePosition);
@@ -303,23 +266,19 @@ public class Enemy : MonoBehaviour
         playerRelativeViewAngle = Quaternion.LookRotation(transform.InverseTransformPoint(playerPosition)).eulerAngles.y;
     }
 
-    private void UpdateSuspiciousTime()
-    {
+    private void UpdateSuspiciousTime() {
         lastSuspiciousTime = Time.time;
     }
 
-    private void UpdateWalkingAnimation(bool isWalking)
-    {
+    private void UpdateWalkingAnimation(bool isWalking) {
         animator.SetBool("IsWalking", isWalking);
     }
 
-    protected float Randomize(float value)
-    {
+    protected float Randomize(float value) {
         return Random.Range((1f - kRandomizePercent), (1f + kRandomizePercent)) * value;
     }
 
-    protected virtual void RandomizeConstants()
-    {
+    protected virtual void RandomizeConstants() {
         kHitRecentlyDuration = Randomize(kHitRecentlyDuration);
         kAngryDistance = Randomize(kAngryDistance);
         kViewDistance = Randomize(kViewDistance);
