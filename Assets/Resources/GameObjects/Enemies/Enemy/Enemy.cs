@@ -136,7 +136,7 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, playerRelativeRotation, rotationSpeed * Time.deltaTime);
     }
 
-    public void WasHit(int damage, Vector3 direction)
+    public void Hit(int damage, Vector3 direction)
     {
         if (isAlive)
         {

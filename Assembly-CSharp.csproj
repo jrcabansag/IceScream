@@ -89,7 +89,7 @@
     <Compile Include="Assets\Resources\GameObjects\MainMenu\StartButton.cs" />
     <Compile Include="Assets\Resources\GameObjects\Orb\Orb.cs" />
     <Compile Include="Assets\Resources\GameObjects\Player\PlayerScript.cs" />
-    <Compile Include="Assets\Resources\GameObjects\Skeleton\SkeletonScript.cs" />
+    <Compile Include="Assets\Resources\GameObjects\Skeleton\Skeleton.cs" />
     <Compile Include="Assets\Resources\GameObjects\Soul\PauseScreen\PauseScreenButton.cs" />
     <Compile Include="Assets\Resources\GameObjects\Soul\Soul.cs" />
     <Compile Include="Assets\Resources\GameObjects\UI\UI.cs" />

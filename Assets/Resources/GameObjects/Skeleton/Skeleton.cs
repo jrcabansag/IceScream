@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonScript : Enemy {
+public class Skeleton : Enemy {
     private float kDieHeadForce = 300f;
     private float kDieUpperBodyForce = 4000f;
     private static Transform kProjectile;
