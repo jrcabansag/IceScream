@@ -5,15 +5,16 @@ using UnityEngine;
 public class Skeleton : Enemy {
     private float kDieHeadForce = 300f;
     private float kDieUpperBodyForce = 4000f;
-    private static Transform kProjectile;
-    private static string kProjectilePath = "GameObjects/Bone/Bone";
-    private float kProjectileShootForce = 1500f;
-    private static float kProjectileYPosition = 3f;
+
+    private static Transform kBone;
+    private static string kBonePath = "GameObjects/Bone/Bone";
+    private float kBoneShootForce = 1500f;
+    private static float kBoneYPosition = 3f;
 
     protected override void Start(){
         base.Start();
-        if (kProjectile == null){
-            kProjectile = ((GameObject)Resources.Load(kProjectilePath, typeof(GameObject))).transform;
+        if (kBone == null){
+            kBone = ((GameObject)Resources.Load(kBonePath, typeof(GameObject))).transform;
         }
     }
 
@@ -32,12 +33,12 @@ public class Skeleton : Enemy {
     protected override void FireProjectile() {
         Vector3 projectileDirection = (playerRelativePosition.normalized + transform.forward).normalized;
         float projectileRotation = Quaternion.LookRotation(projectileDirection).eulerAngles.y;
-        Vector3 projectilePosition = new Vector3(transform.position.x, kProjectileYPosition, transform.position.z);
+        Vector3 projectilePosition = new Vector3(transform.position.x, kBoneYPosition, transform.position.z);
 
-        Transform projectile = Instantiate(kProjectile);
+        Transform projectile = Instantiate(kBone);
         projectile.transform.position = projectilePosition+Vector3.Normalize(transform.forward);
         projectile.transform.rotation = Quaternion.Euler(90f, projectileRotation, 0);
-        projectile.GetComponent<Rigidbody>().AddForce(projectileDirection * kProjectileShootForce);
+        projectile.GetComponent<Rigidbody>().AddForce(projectileDirection * kBoneShootForce);
         projectile.GetComponent<Bone>().moveDirection = projectileDirection;
     }
 
