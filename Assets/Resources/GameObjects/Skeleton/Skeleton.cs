@@ -19,19 +19,6 @@ public class Skeleton : Enemy {
 
     protected override void Die(Vector3 direction){
         base.Die(direction);
-
-        //Make all bones fall apart
-		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
-		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
         transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * kDieUpperBodyForce);
 		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * kDieHeadForce);
     }
@@ -45,8 +32,6 @@ public class Skeleton : Enemy {
 
     protected override void FireProjectile()
     {
-        base.FireProjectile();
-
         Vector3 projectileDirection = (playerRelativePosition.normalized + transform.forward).normalized;
         float projectileRotation = Quaternion.LookRotation(projectileDirection).eulerAngles.y;
         Vector3 projectilePosition = new Vector3(transform.position.x, kProjectileYPosition, transform.position.z);
@@ -56,5 +41,20 @@ public class Skeleton : Enemy {
         projectile.transform.rotation = Quaternion.Euler(90f, projectileRotation, 0);
         projectile.GetComponent<Rigidbody>().AddForce(projectileDirection * kProjectileShootForce);
         projectile.GetComponent<Bone>().moveDirection = projectileDirection;
+    }
+
+    protected override void Ragdoll()
+    {
+        transform.Find("Armature/LowerBody").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody>().isKinematic = false;
     }
 }

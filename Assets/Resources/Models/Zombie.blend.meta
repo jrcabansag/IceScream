@@ -50,6 +50,8 @@ ModelImporter:
     100088: Brain
     100090: Sphere
     100092: Head_0
+    100094: Armature
+    100096: ZombieHead
     400000: Apron
     400002: ApronRibbon
     400004: ApronRibbonRopeL
@@ -97,6 +99,8 @@ ModelImporter:
     400088: Brain
     400090: Sphere
     400092: Head_0
+    400094: Armature
+    400096: ZombieHead
     2100000: White
     2100002: Pink
     2100004: Hair
@@ -120,6 +124,7 @@ ModelImporter:
     4300030: Brain
     4300032: Sphere
     4300034: Head
+    4300036: ZombieHead
     7400000: Default Take
     7400002: Attacking
     7400004: Attacking_001
@@ -157,6 +162,7 @@ ModelImporter:
     13700030: Brain
     13700032: Sphere
     13700034: Head
+    13700036: ZombieHead
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -322,7 +328,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -64,14 +64,29 @@ public class Enemy : MonoBehaviour
         phase = kIdlePhase;
     }
 
+    protected virtual void Ragdoll(){
+        transform.Find("Armature/LowerBody").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_L/Shoulder_L/UpperArm_L/LowerArm_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperBody/CollarBone_R/Shoulder_R/UpperArm_R/LowerArm_R").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_L/LowerLeg_L").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_R").GetComponent<Rigidbody>().isKinematic = false;
+        transform.Find("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody>().isKinematic = false;
+    }
+
     protected virtual void Die(Vector3 direction) {
+        Ragdoll();
+        transform.Find("AimHelp").gameObject.layer = kInactiveLayer;
+        gameObject.layer = kInactiveLayer;
         Destroy(enemyEmoteCanvas.gameObject);
         isAlive = false;
         animator.enabled = false;
         ui.UpdateCombo();
         healthBar.Die();
-        gameObject.layer = kInactiveLayer;
-        transform.Find("AimHelp").gameObject.layer = kInactiveLayer;
     }
 
     private void Update() {
