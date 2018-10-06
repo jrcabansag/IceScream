@@ -88,14 +88,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void UpdatePlayerVariables() {
-        Vector3 playerPosition = player.position;
-        playerRelativePosition = playerPosition - transform.position;
-        playerRelativeDistance = Vector3.Magnitude(playerRelativePosition);
-        playerRelativeRotation = Quaternion.Euler(0f, Quaternion.LookRotation(playerRelativePosition).eulerAngles.y, 0f);
-        playerRelativeViewAngle = Quaternion.LookRotation(transform.InverseTransformPoint(playerPosition)).eulerAngles.y;
-    }
-
     private void UpdatePhase() {
         if (player.GetComponent<PlayerScript>().lives > 0) {
             bool isPlayerInViewAngleRange = (playerRelativeViewAngle < kViewAngle || playerRelativeViewAngle > 360-kViewAngle);
@@ -133,6 +125,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void UpdatePlayerVariables()
+    {
+        Vector3 playerPosition = player.position;
+        playerRelativePosition = playerPosition - transform.position;
+        playerRelativeDistance = Vector3.Magnitude(playerRelativePosition);
+        playerRelativeRotation = Quaternion.Euler(0f, Quaternion.LookRotation(playerRelativePosition).eulerAngles.y, 0f);
+        playerRelativeViewAngle = Quaternion.LookRotation(transform.InverseTransformPoint(playerPosition)).eulerAngles.y;
+    }
+
     private void MoveTowardsPlayer(float movementSpeed){
         transform.Translate(Vector3.Normalize(playerRelativePosition) * movementSpeed * Time.deltaTime, Space.World);
         UpdateWalkingAnimation(true);
@@ -140,56 +141,6 @@ public class Enemy : MonoBehaviour
 
     private void RotateToPlayer(float rotationSpeed){
         transform.rotation = Quaternion.Slerp(transform.rotation, playerRelativeRotation, rotationSpeed * Time.deltaTime);
-    }
-
-    private void UpdateLastHitTime() {
-        lastHitTime = Time.time;
-    }
-
-    private void UpdateSuspiciousTime() {
-        lastSuspiciousTime = Time.time;
-    }
-
-    private void UpdateJoltedTime() {
-        lastJoltedTime = Time.time;
-    }
-
-    private void UpdateAngryTime() {
-        lastAngryTime = Time.time;
-    }
-
-    private bool IsPlayerWithin(float distance)
-    {
-        return playerRelativeDistance <= distance;
-    }
-
-    private bool IsJolted()
-    {
-        return IsTimeInDuration(lastJoltedTime, kJoltedDuration);
-    }
-
-    private bool IsInFadingSuspicion()
-    {
-        return IsTimeInDuration(lastSuspiciousTime, kSuspiciousDuration) || IsTimeInDuration(lastAngryTime, kSuspiciousAfterAngryDuration);
-    }
-
-    private bool WasHitRecently()
-    {
-        return IsTimeInDuration(lastHitTime, kHitRecentlyDuration);
-    }
-
-    private void UpdateWalkingAnimation(bool isWalking)
-    {
-        animator.SetBool("IsWalking", isWalking);
-    }
-
-    private void UpdateEmote()
-    {
-        if (phase == kSuspiciousPhase) {
-            enemyEmoteCanvas.Show();
-        } else {
-            enemyEmoteCanvas.HideImmediate();
-        }
     }
 
     public void WasHit(int damage, Vector3 direction)
@@ -205,7 +156,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                UpdateHealth();
+                UpdateHealthBar();
                 UpdateLastHitTime();
                 if (phase != "Angry")
                 {
@@ -218,7 +169,7 @@ public class Enemy : MonoBehaviour
 
     void ShouldFire()
     {
-        if (phase == "Angry")
+        if (phase == kAngryPhase && !IsJolted())
         {
             float wasHitRecentlyAdd = 0f;
             if (WasHitRecently()) {
@@ -249,24 +200,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void UpdateHealth()
-    {
-        if (health <= 0)
-        {
-            health = 0;
-        }
-        healthBar.SetValue(health * 1f / kTotalHealth);
-    }
-
-    void UpdateHealthBar()
-    {
-        if (WasHitRecently()) {
-            healthBar.Show();
-        } else {
-            healthBar.Hide();
-        }
-    }
-
     void OnCollisionEnter(Collision col)
     {
         if (col.transform.tag == "Player")
@@ -280,13 +213,88 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    bool IsTimeInDuration(float time, float timeDuration)
+    private bool IsJolted()
+    {
+        return IsTimeInDuration(lastJoltedTime, kJoltedDuration);
+    }
+
+    private bool IsInFadingSuspicion()
+    {
+        return IsTimeInDuration(lastSuspiciousTime, kSuspiciousDuration) || IsTimeInDuration(lastAngryTime, kSuspiciousAfterAngryDuration);
+    }
+
+    private bool IsPlayerWithin(float distance)
+    {
+        return playerRelativeDistance <= distance;
+    }
+
+    private bool WasHitRecently()
+    {
+        return IsTimeInDuration(lastHitTime, kHitRecentlyDuration);
+    }
+
+    protected bool IsTimeInDuration(float time, float timeDuration)
     {
         return time != 0 && Time.time - time < timeDuration;
     }
 
-    protected float Randomize(float value){
-        return Random.Range((1f - kRandomizePercent), (1f + kRandomizePercent))*value;
+    private void UpdateAngryTime()
+    {
+        lastAngryTime = Time.time;
+    }
+
+    private void UpdateEmote()
+    {
+        if (phase == kSuspiciousPhase)
+        {
+            enemyEmoteCanvas.Show();
+        }
+        else
+        {
+            enemyEmoteCanvas.HideImmediate();
+        }
+    }
+
+    void UpdateHealthBar()
+    {
+        if (WasHitRecently())
+        {
+            if (health <= 0)
+            {
+                health = 0;
+            }
+            healthBar.SetValue(health * 1f / kTotalHealth);
+            healthBar.Show();
+        }
+        else
+        {
+            healthBar.Hide();
+        }
+    }
+
+    private void UpdateJoltedTime()
+    {
+        lastJoltedTime = Time.time;
+    }
+
+    private void UpdateLastHitTime()
+    {
+        lastHitTime = Time.time;
+    }
+
+    private void UpdateSuspiciousTime()
+    {
+        lastSuspiciousTime = Time.time;
+    }
+
+    private void UpdateWalkingAnimation(bool isWalking)
+    {
+        animator.SetBool("IsWalking", isWalking);
+    }
+
+    protected float Randomize(float value)
+    {
+        return Random.Range((1f - kRandomizePercent), (1f + kRandomizePercent)) * value;
     }
 
     protected virtual void RandomizeConstants()
