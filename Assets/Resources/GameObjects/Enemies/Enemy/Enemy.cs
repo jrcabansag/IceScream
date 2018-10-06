@@ -9,13 +9,15 @@ public class Enemy : MonoBehaviour
     // Static variables for all enemies
     protected static Transform player;
     protected static UI ui;
+    protected static string kAngryPhase = "Angry";
+    protected static string kIdlePhase = "Idle";
+    protected static string kSuspiciousPhase = "Suspicious";
+    protected static int kInactiveLayer = 11;
 
     // Constants
-    protected string kAngryPhase = "Angry";
     protected float kAngryDistance = 10f;
     protected float kAttackForSureDistance = 3f;
     protected float kHitRecentlyDuration = 5f;
-    protected string kIdlePhase = "Idle";
     protected float kJoltedDuration = 1f;
     protected float kMovementSpeed = 7f;
     protected float kRandomizePercent = 0.2f;
@@ -25,7 +27,6 @@ public class Enemy : MonoBehaviour
     protected float kSuspiciousAfterAngryDuration = 2f;
     protected float kSuspiciousDistance = 5f;
     protected float kSuspiciousDuration = 2f;
-    protected string kSuspiciousPhase = "Suspicious";
     protected int kTotalHealth = 300;
     protected float kTouchedPlayerForce = 800f;
     protected float kViewAngle = 70f;
@@ -66,10 +67,11 @@ public class Enemy : MonoBehaviour
     protected virtual void Die(Vector3 direction) {
         Destroy(enemyEmoteCanvas.gameObject);
         isAlive = false;
-        gameObject.layer = 11;
         animator.enabled = false;
         ui.UpdateCombo();
         healthBar.Die();
+        gameObject.layer = kInactiveLayer;
+        transform.Find("AimHelp").gameObject.layer = kInactiveLayer;
     }
 
     private void Update() {
@@ -78,7 +80,7 @@ public class Enemy : MonoBehaviour
             UpdatePhase();
             UpdateEmote();
             UpdateHealthBar();
-            ShouldFire();
+            CheckToFire();
         }
     }
 
@@ -108,7 +110,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void MoveAccordingToPhase() {
-        if(player.GetComponent<PlayerScript>().lives > 0 && phase == "Angry"){
+        if(player.GetComponent<PlayerScript>().lives > 0 && phase == kAngryPhase){
             if (IsJolted()) {
                 RotateToPlayer(kJoltedRotationSpeed);
             } else {
@@ -123,15 +125,6 @@ public class Enemy : MonoBehaviour
         } else {
             UpdateWalkingAnimation(false);
         }
-    }
-
-    private void UpdatePlayerVariables()
-    {
-        Vector3 playerPosition = player.position;
-        playerRelativePosition = playerPosition - transform.position;
-        playerRelativeDistance = Vector3.Magnitude(playerRelativePosition);
-        playerRelativeRotation = Quaternion.Euler(0f, Quaternion.LookRotation(playerRelativePosition).eulerAngles.y, 0f);
-        playerRelativeViewAngle = Quaternion.LookRotation(transform.InverseTransformPoint(playerPosition)).eulerAngles.y;
     }
 
     private void MoveTowardsPlayer(float movementSpeed){
@@ -158,16 +151,20 @@ public class Enemy : MonoBehaviour
             {
                 UpdateHealthBar();
                 UpdateLastHitTime();
-                if (phase != "Angry")
+                if (phase != kAngryPhase)
                 {
-                    animator.SetTrigger("IsHit");
+                    animator.SetTrigger("IsJolted");
                     UpdateJoltedTime();
                 }
             }
         }
     }
 
-    void ShouldFire()
+    protected virtual void FireProjectile(){
+        //No-op
+    }
+
+    private void CheckToFire()
     {
         if (phase == kAngryPhase && !IsJolted())
         {
@@ -179,7 +176,7 @@ public class Enemy : MonoBehaviour
             {
                 animator.SetTrigger("IsAttacking");
             }
-            if (playerRelativeDistance < kAngryDistance / 2)
+            if (playerRelativeDistance < kAngryDistance)
             {
                 if (Random.Range(0f, 100f) < (55f + wasHitRecentlyAdd) * Time.deltaTime)
                 {
@@ -200,15 +197,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision col)
+    private void OnCollisionEnter(Collision col)
     {
         if (col.transform.tag == "Player")
         {
-            //Keep pushing force y zero, so player isn't pushed up or down
+            //Make the force's y zero, so player isn't pushed up or down
             Vector3 myForward = transform.forward;
             myForward.y = 0f;
 
-            //Push the player
+            //Push the player back for touching the enemy
             col.transform.GetComponent<PlayerScript>().HitEnemy(Vector3.Normalize(myForward), kTouchedPlayerForce);
         }
     }
@@ -228,14 +225,14 @@ public class Enemy : MonoBehaviour
         return playerRelativeDistance <= distance;
     }
 
-    private bool WasHitRecently()
-    {
-        return IsTimeInDuration(lastHitTime, kHitRecentlyDuration);
-    }
-
     protected bool IsTimeInDuration(float time, float timeDuration)
     {
         return time != 0 && Time.time - time < timeDuration;
+    }
+
+    private bool WasHitRecently()
+    {
+        return IsTimeInDuration(lastHitTime, kHitRecentlyDuration);
     }
 
     private void UpdateAngryTime()
@@ -280,6 +277,15 @@ public class Enemy : MonoBehaviour
     private void UpdateLastHitTime()
     {
         lastHitTime = Time.time;
+    }
+
+    private void UpdatePlayerVariables()
+    {
+        Vector3 playerPosition = player.position;
+        playerRelativePosition = playerPosition - transform.position;
+        playerRelativeDistance = Vector3.Magnitude(playerRelativePosition);
+        playerRelativeRotation = Quaternion.Euler(0f, Quaternion.LookRotation(playerRelativePosition).eulerAngles.y, 0f);
+        playerRelativeViewAngle = Quaternion.LookRotation(transform.InverseTransformPoint(playerPosition)).eulerAngles.y;
     }
 
     private void UpdateSuspiciousTime()

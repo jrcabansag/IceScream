@@ -5,19 +5,22 @@ using UnityEngine;
 public class SkeletonScript : Enemy {
     private float kDieHeadForce = 300f;
     private float kDieUpperBodyForce = 4000f;
+    private static Transform kProjectile;
+    private static string kProjectilePath = "GameObjects/Bone/Bone";
     private float kProjectileShootForce = 1500f;
-
-    private static Transform bone;
+    private static float kProjectileYPosition = 3f;
 
     protected override void Start(){
         base.Start();
-        if (bone == null){
-            bone = ((GameObject)Resources.Load("GameObjects/Bone/Bone", typeof(GameObject))).transform;
+        if (kProjectile == null){
+            kProjectile = ((GameObject)Resources.Load(kProjectilePath, typeof(GameObject))).transform;
         }
     }
 
     protected override void Die(Vector3 direction){
         base.Die(direction);
+
+        //Make all bones fall apart
 		transform.Find ("Armature/LowerBody").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().isKinematic = false;
 		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().isKinematic = false;
@@ -31,7 +34,6 @@ public class SkeletonScript : Enemy {
 		transform.Find ("Armature/LowerBody/UpperLeg_R/LowerLeg_R").GetComponent<Rigidbody> ().isKinematic = false;
         transform.Find ("Armature/LowerBody/UpperBody").GetComponent<Rigidbody> ().AddForce (direction * kDieUpperBodyForce);
 		transform.Find ("Armature/LowerBody/UpperBody/Head").GetComponent<Rigidbody> ().AddForce (direction * kDieHeadForce);
-        transform.Find("SkeletonAimHelp").gameObject.layer = 11;
     }
 
     protected override void RandomizeConstants()
@@ -41,15 +43,18 @@ public class SkeletonScript : Enemy {
         kDieUpperBodyForce = Randomize(kDieUpperBodyForce);
     }
 
-    void FireBone(){
-		Vector3 fireDirection = player.transform.position-transform.position;
-		fireDirection = (fireDirection.normalized+transform.forward).normalized;
-		Quaternion rot = Quaternion.LookRotation (fireDirection);
-		Transform boneProjectile = Instantiate (bone);
-		Vector3 bonePosition = new Vector3 (transform.position.x, 3f, transform.position.z);
-		boneProjectile.transform.position = bonePosition + 1f*Vector3.Normalize (transform.forward);
-		boneProjectile.transform.rotation = Quaternion.Euler (90f, rot.eulerAngles.y, 0);
-		boneProjectile.GetComponent<Rigidbody> ().AddForce (fireDirection * kProjectileShootForce);
-		boneProjectile.GetComponent<Bone> ().moveDirection = fireDirection;
-	}
+    protected override void FireProjectile()
+    {
+        base.FireProjectile();
+
+        Vector3 projectileDirection = (playerRelativePosition.normalized + transform.forward).normalized;
+        float projectileRotation = Quaternion.LookRotation(projectileDirection).eulerAngles.y;
+        Vector3 projectilePosition = new Vector3(transform.position.x, kProjectileYPosition, transform.position.z);
+
+        Transform projectile = Instantiate(kProjectile);
+        projectile.transform.position = projectilePosition+Vector3.Normalize(transform.forward);
+        projectile.transform.rotation = Quaternion.Euler(90f, projectileRotation, 0);
+        projectile.GetComponent<Rigidbody>().AddForce(projectileDirection * kProjectileShootForce);
+        projectile.GetComponent<Bone>().moveDirection = projectileDirection;
+    }
 }
